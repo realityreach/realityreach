@@ -1,775 +1,625 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Home | realityreach.in</title>
-  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Raleway:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
-  <style>
-    /* ── RESET ── */
-    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-    html{scroll-behavior:smooth}
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Reality Reach Ventures</title>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Raleway:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+:root{
+  --navy:#162947;--navy2:#1c3356;
+  --blue:#3a7bd5;--blue2:#5b9de8;
+  --pink:#e8407a;--pink2:#f472a8;--pink3:#fde8f1;
+  --white:#fff;--off:#f7f9fc;--border:#dde6f0;
+  --text:#2d2d2d;--muted:#5a6a80;
+  --grad:linear-gradient(135deg,#3a7bd5 0%,#e8407a 100%);
+  --grad2:linear-gradient(135deg,#162947 0%,#2a4a7a 60%,#7a2048 100%);
+}
+body{font-family:'Raleway',sans-serif;background:#fff;color:var(--text);font-size:15px;line-height:1.6;overflow-x:hidden}
 
-    /* ── PALETTE ── */
-    :root{
-      --navy:   #162947;
-      --navy2:  #1c3356;
-      --blue:   #3a7bd5;
-      --blue2:  #5b9de8;
-      --pink:   #e8407a;
-      --pink2:  #f472a8;
-      --pink3:  #fde8f1;
-      --white:  #ffffff;
-      --offwhite:#f7f9fc;
-      --border: #dde6f0;
-      --text:   #2d2d2d;
-      --muted:  #5a6a80;
-      --grad:   linear-gradient(135deg, var(--blue) 0%, var(--pink) 100%);
-      --grad2:  linear-gradient(135deg, var(--navy) 0%, #2a4a7a 60%, #7a2048 100%);
-    }
+/* PAGE SYSTEM */
+.pv{display:none!important}
+.pv.on{display:block!important}
 
-    body{font-family:'Raleway',sans-serif;background:#fff;color:var(--text);font-size:15px;line-height:1.6;overflow-x:hidden}
+/* TOP BAR */
+.topbar{background:var(--grad);color:#fff;text-align:center;font-size:11px;letter-spacing:.1em;padding:7px 20px;font-weight:600}
 
-    /* ── PAGE SYSTEM ── */
-    .page-view{display:none}
-    .page-view.active{display:block}
+/* HEADER */
+header{background:var(--navy);position:sticky;top:0;z-index:500;box-shadow:0 2px 16px rgba(0,0,0,.35)}
+.nav-inner{max-width:1140px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:0 32px;height:72px}
+.brand-btn{display:flex;align-items:center;gap:14px;cursor:pointer;background:none;border:none;padding:0}
+.brand-btn img{width:52px;height:52px;border-radius:50%;object-fit:cover;border:2px solid var(--pink)}
+.brand-name{font-weight:800;font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;color:#fff;line-height:1.35;text-align:left}
+.brand-name span{color:var(--pink2)}
+nav{display:flex;align-items:center;list-style:none;gap:0}
+nav li{position:relative}
+nav li a{display:block;padding:24px 15px;color:#c8d8ea;text-decoration:none;font-size:11.5px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;transition:color .2s,background .2s;white-space:nowrap;cursor:pointer}
+nav li a:hover,nav li a.cur{color:#fff;background:rgba(255,255,255,.07)}
+nav li a.cur{border-bottom:2px solid var(--pink)}
+.dd{display:none;position:absolute;top:100%;left:0;background:var(--navy2);min-width:210px;box-shadow:0 8px 24px rgba(0,0,0,.3);z-index:600}
+nav li:hover .dd{display:block}
+.dd a{padding:13px 20px;font-size:11px;border-bottom:1px solid rgba(255,255,255,.06);display:block;color:#c8d8ea;text-decoration:none;cursor:pointer;white-space:nowrap}
+.dd a:hover{background:rgba(232,64,122,.15);color:var(--pink2)}
+.paybtn{background:var(--grad);color:#fff;font-weight:700;font-size:11px;letter-spacing:.13em;text-transform:uppercase;text-decoration:none;padding:10px 22px;border-radius:30px;box-shadow:0 2px 12px rgba(232,64,122,.35);transition:opacity .2s;white-space:nowrap}
+.paybtn:hover{opacity:.85}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:8px;background:none;border:none}
+.hamburger span{display:block;width:22px;height:2px;background:#c8d8ea;border-radius:2px}
+#mob-menu{display:none;background:var(--navy);border-top:2px solid transparent;border-image:var(--grad) 1}
+#mob-menu a{display:block;padding:14px 28px;color:#c8d8ea;font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;text-decoration:none;border-bottom:1px solid rgba(255,255,255,.06);cursor:pointer;font-family:'Raleway',sans-serif}
+#mob-menu a:hover{background:rgba(232,64,122,.12)}
+#mob-menu .mob-pay{background:var(--grad);color:#fff;text-align:center}
 
-    /* ── TOP BAR ── */
-    .top-bar{
-      background:var(--grad);
-      color:#fff;
-      text-align:center;
-      font-size:11px;
-      letter-spacing:0.1em;
-      padding:7px 20px;
-      font-weight:600;
-    }
+/* SHARED */
+.wrap{max-width:1100px;margin:0 auto;padding:0 32px}
+.eyebrow{font-size:11px;font-weight:700;letter-spacing:.25em;text-transform:uppercase;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:10px;display:inline-block}
+.tbar{display:inline-block;width:50px;height:3px;background:var(--grad);border-radius:2px;margin-bottom:20px}
+.sec-title{font-family:'Libre Baskerville',serif;font-size:2rem;font-weight:700;color:var(--navy);margin-bottom:8px}
+.sec-sub{color:var(--muted);font-size:13px;letter-spacing:.06em;margin-bottom:44px}
+.btn-p{background:var(--grad);color:#fff;font-weight:700;font-size:12px;letter-spacing:.13em;text-transform:uppercase;text-decoration:none;padding:13px 30px;border-radius:30px;cursor:pointer;border:none;box-shadow:0 4px 16px rgba(232,64,122,.4);transition:opacity .2s,transform .2s;display:inline-block}
+.btn-p:hover{opacity:.9;transform:translateY(-2px)}
+.btn-o{border:2px solid rgba(255,255,255,.7);color:#fff;background:transparent;font-weight:700;font-size:12px;letter-spacing:.13em;text-transform:uppercase;text-decoration:none;padding:11px 28px;border-radius:30px;cursor:pointer;border:none;transition:background .2s;display:inline-block;border:2px solid rgba(255,255,255,.7)}
+.btn-o:hover{background:rgba(255,255,255,.12)}
 
-    /* ── HEADER ── */
-    header{
-      background:var(--navy);
-      position:sticky;top:0;z-index:500;
-      box-shadow:0 2px 16px rgba(0,0,0,0.35);
-    }
-    .nav-inner{
-      max-width:1140px;margin:0 auto;
-      display:flex;align-items:center;justify-content:space-between;
-      padding:0 32px;height:72px;
-    }
-    .nav-brand{display:flex;align-items:center;gap:14px;text-decoration:none;cursor:pointer}
-    .nav-brand img{width:52px;height:52px;border-radius:50%;object-fit:cover;border:2px solid var(--pink)}
-    .brand-name{font-weight:800;font-size:12.5px;letter-spacing:0.14em;text-transform:uppercase;color:#fff;line-height:1.35}
-    .brand-name span{color:var(--pink2)}
+/* INNER HERO */
+.ihero{background:var(--grad2);padding:72px 32px 60px;text-align:center;position:relative;overflow:hidden}
+.ihero::before{content:'';position:absolute;inset:0;background:url('https://static.wixstatic.com/media/nsplsh_282272825cad4c44ace29782b53e57b8~mv2.jpg/v1/fill/w_1920,h_600,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/Image%20by%20Marvin%20Meyer.jpg') center/cover;opacity:.1}
+.ihero-c{position:relative;z-index:2}
+.ihero h1{font-family:'Libre Baskerville',serif;font-size:clamp(1.8rem,4vw,2.8rem);color:#fff;font-weight:700;margin-bottom:12px}
+.ihero p{color:rgba(255,255,255,.75);font-size:14px;max-width:560px;margin:0 auto}
+.bc{margin-bottom:20px;font-size:12px;color:rgba(255,255,255,.5);letter-spacing:.08em}
+.bc a{color:var(--pink2);cursor:pointer;text-decoration:none}
+.bc a:hover{text-decoration:underline}
 
-    .nav-links{display:flex;align-items:center;list-style:none}
-    .nav-links li{position:relative}
-    .nav-links a{
-      display:block;padding:24px 16px;
-      color:#c8d8ea;text-decoration:none;
-      font-size:11.5px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;
-      transition:color .2s,background .2s;white-space:nowrap;cursor:pointer;
-    }
-    .nav-links a:hover,.nav-links a.active-link{color:#fff;background:rgba(255,255,255,0.07)}
-    .nav-links a.active-link{border-bottom:2px solid var(--pink)}
+/* HERO */
+.hero{position:relative;width:100%;height:500px;overflow:hidden;display:flex;align-items:center;justify-content:center}
+.hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.hero-ov{position:absolute;inset:0;background:linear-gradient(135deg,rgba(22,41,71,.75) 40%,rgba(180,30,80,.55) 100%)}
+.hero-txt{position:relative;z-index:2;text-align:center;padding:0 24px;animation:fup .9s ease both}
+@keyframes fup{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
+.hero-txt h1{font-family:'Libre Baskerville',serif;font-size:clamp(1.9rem,4.5vw,3.2rem);font-weight:700;color:#fff;line-height:1.25}
+.hero-txt p{color:rgba(255,255,255,.8);margin-top:16px;font-size:1rem;max-width:560px;margin-left:auto;margin-right:auto}
+.hero-btns{margin-top:28px;display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
 
-    .dropdown{display:none;position:absolute;top:100%;left:0;background:var(--navy2);min-width:190px;box-shadow:0 8px 24px rgba(0,0,0,0.3);z-index:600}
-    .nav-links li:hover .dropdown{display:block}
-    .dropdown a{padding:13px 20px;font-size:11px;border-bottom:1px solid rgba(255,255,255,0.06);display:block}
-    .dropdown a:hover{background:rgba(232,64,122,0.15);color:var(--pink2)}
+/* ABOUT STRIP */
+.ab-strip{background:var(--off);padding:68px 0;text-align:center;border-bottom:1px solid var(--border)}
+.ab-strip .wrap{max-width:800px}
+.ab-strip h2{font-family:'Libre Baskerville',serif;font-size:2rem;font-weight:700;color:var(--navy);margin-bottom:18px}
+.ab-strip p{color:#4a5568;font-size:15px;line-height:1.9}
 
-    .nav-pay-btn{
-      background:var(--grad);
-      color:#fff;font-weight:700;font-size:11px;letter-spacing:0.13em;text-transform:uppercase;
-      text-decoration:none;padding:10px 22px;border-radius:30px;
-      box-shadow:0 2px 12px rgba(232,64,122,0.35);
-      transition:opacity .2s,transform .2s;white-space:nowrap;
-    }
-    .nav-pay-btn:hover{opacity:.9;transform:translateY(-1px)}
+/* SERVICES GRID */
+.svc-sec{padding:76px 0;background:#fff}
+.svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.svc-card{background:var(--off);border:1px solid var(--border);border-radius:6px;padding:36px 26px 28px;text-align:center;transition:box-shadow .25s,transform .25s,border-color .25s;cursor:pointer}
+.svc-card:hover{box-shadow:0 10px 36px rgba(58,123,213,.14);transform:translateY(-5px);border-color:var(--blue)}
+.svc-ico{width:66px;height:66px;border-radius:50%;background:var(--grad2);display:flex;align-items:center;justify-content:center;margin:0 auto 18px;font-size:26px;transition:box-shadow .25s}
+.svc-card:hover .svc-ico{box-shadow:0 4px 20px rgba(232,64,122,.4)}
+.svc-card h3{font-weight:700;font-size:12.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--navy);margin-bottom:14px}
+.sep{border:none;border-top:1px solid var(--border);margin:14px 0}
+.rdm{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;text-decoration:none;cursor:pointer;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;border-bottom:1px solid var(--pink);padding-bottom:2px;transition:opacity .2s}
+.rdm:hover{opacity:.7}
 
-    .hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:8px}
-    .hamburger span{display:block;width:22px;height:2px;background:#c8d8ea;border-radius:2px}
+/* ACCENT BAND */
+.accent{background:var(--grad);padding:48px 32px;text-align:center;color:#fff}
+.accent h3{font-family:'Libre Baskerville',serif;font-size:1.6rem;margin-bottom:10px}
+.accent p{opacity:.85;font-size:14px;margin-bottom:24px}
 
-    /* ── HERO ── */
-    .hero{position:relative;width:100%;height:500px;overflow:hidden;display:flex;align-items:center;justify-content:center}
-    .hero-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-    .hero-overlay{position:absolute;inset:0;background:linear-gradient(135deg,rgba(22,41,71,.75) 40%,rgba(180,30,80,.55) 100%)}
-    .hero-text{position:relative;z-index:2;text-align:center;padding:0 24px;animation:fadeUp .9s ease both}
-    @keyframes fadeUp{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
-    .hero-text h1{
-      font-family:'Libre Baskerville',serif;
-      font-size:clamp(1.9rem,4.5vw,3.2rem);
-      font-weight:700;color:#fff;line-height:1.25;
-    }
-    .hero-text p{color:rgba(255,255,255,.8);margin-top:16px;font-size:1rem;max-width:560px;margin-left:auto;margin-right:auto}
-    .hero-btns{margin-top:28px;display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
-    .btn-primary{
-      background:var(--grad);color:#fff;
-      font-weight:700;font-size:12px;letter-spacing:0.13em;text-transform:uppercase;
-      text-decoration:none;padding:13px 30px;border-radius:30px;cursor:pointer;border:none;
-      box-shadow:0 4px 16px rgba(232,64,122,0.4);transition:opacity .2s,transform .2s;
-    }
-    .btn-primary:hover{opacity:.9;transform:translateY(-2px)}
-    .btn-outline{
-      border:2px solid rgba(255,255,255,.7);color:#fff;background:transparent;
-      font-weight:700;font-size:12px;letter-spacing:0.13em;text-transform:uppercase;
-      text-decoration:none;padding:11px 28px;border-radius:30px;cursor:pointer;
-      transition:background .2s,border-color .2s;
-    }
-    .btn-outline:hover{background:rgba(255,255,255,.12);border-color:#fff}
+/* CONTACT */
+.ct-sec{background:#f0f5fb;padding:76px 0;border-top:1px solid var(--border)}
+.ct-wrap{max-width:640px;margin:0 auto;background:#fff;border:1px solid var(--border);border-radius:8px;padding:48px 48px 40px;box-shadow:0 4px 24px rgba(22,41,71,.08)}
+.fg{margin-bottom:20px}
+.fg label{display:block;font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:7px}
+.fg input,.fg textarea,.fg select{width:100%;border:1px solid #c9d6e8;border-radius:4px;padding:11px 14px;font-family:'Raleway',sans-serif;font-size:14px;color:var(--text);background:#fafbfd;outline:none;transition:border-color .2s,box-shadow .2s}
+.fg input:focus,.fg textarea:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(58,123,213,.12);background:#fff}
+.fg textarea{height:120px;resize:vertical}
+.fg2{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.sub-btn{background:var(--grad);color:#fff;font-family:'Raleway',sans-serif;font-weight:700;font-size:12px;letter-spacing:.15em;text-transform:uppercase;border:none;padding:13px 36px;border-radius:30px;cursor:pointer;margin-top:8px;transition:opacity .2s,transform .2s;box-shadow:0 4px 16px rgba(232,64,122,.35)}
+.sub-btn:hover{opacity:.9;transform:translateY(-1px)}
+.fsuc{display:none;margin-top:16px;color:#2e7d32;font-size:13px;font-weight:600}
 
-    /* ── SHARED ── */
-    .wrap{max-width:1100px;margin:0 auto;padding:0 32px}
-    .section-eyebrow{
-      font-size:11px;font-weight:700;letter-spacing:0.25em;text-transform:uppercase;
-      background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;
-      background-clip:text;margin-bottom:10px;display:inline-block;
-    }
-    .section-title{font-family:'Libre Baskerville',serif;font-size:2rem;font-weight:700;color:var(--navy);margin-bottom:8px}
-    .section-lead{color:var(--muted);font-size:14px;letter-spacing:0.06em;margin-bottom:44px}
+/* PAYMENT */
+.pay-sec{background:var(--grad2);padding:60px 32px;text-align:center}
+.pay-sec h2{font-family:'Libre Baskerville',serif;font-size:1.7rem;color:#fff;margin-bottom:10px}
+.pay-sec p{color:rgba(255,255,255,.7);font-size:13px;margin-bottom:28px}
 
-    /* pink accent underline for section titles */
-    .title-bar{
-      display:inline-block;width:50px;height:3px;
-      background:var(--grad);border-radius:2px;margin-bottom:24px;
-    }
+/* FOOTER */
+footer{background:#0d1a2e;padding:44px 32px 28px}
+.ft-in{max-width:1100px;margin:0 auto}
+.ft-top{display:flex;align-items:center;justify-content:space-between;padding-bottom:28px;border-bottom:1px solid rgba(255,255,255,.08);gap:24px;flex-wrap:wrap}
+.ft-brand{font-weight:800;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:#c8d8ea}
+.ft-brand span{background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.ft-links{display:flex;gap:28px;flex-wrap:wrap}
+.ft-links a{color:#7a9bbb;text-decoration:none;font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;transition:color .2s}
+.ft-links a:hover{color:var(--pink2)}
+.ft-bot{padding-top:20px;font-size:11px;color:#4a6a8a;text-align:center;letter-spacing:.04em}
+.ft-bot a{color:var(--blue2);text-decoration:none;cursor:pointer}
 
-    /* ── ABOUT STRIP (home) ── */
-    .about-strip{background:var(--offwhite);padding:68px 0;text-align:center;border-bottom:1px solid var(--border)}
-    .about-strip .wrap{max-width:800px}
-    .about-strip h2{font-family:'Libre Baskerville',serif;font-size:2rem;font-weight:700;color:var(--navy);margin-bottom:18px}
-    .about-strip p{color:#4a5568;font-size:15px;line-height:1.9}
+/* ABOUT PAGE */
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;padding:76px 0}
+.about-grid img{width:100%;border-radius:8px;box-shadow:0 12px 40px rgba(22,41,71,.15)}
+.about-txt h2{font-family:'Libre Baskerville',serif;font-size:1.9rem;color:var(--navy);margin-bottom:20px}
+.about-txt p{color:#4a5568;line-height:1.9;margin-bottom:16px;font-size:15px}
+.stat-row{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;margin-bottom:80px}
+.stat-box{text-align:center;padding:28px 16px;background:var(--off);border-radius:8px;border:1px solid var(--border)}
+.stat-box .num{font-family:'Libre Baskerville',serif;font-size:2.2rem;font-weight:700;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.stat-box .lbl{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-top:6px}
+.team-sec{padding:60px 0 80px;background:var(--off)}
+.team-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;margin-top:40px}
+.team-card{background:#fff;border:1px solid var(--border);border-radius:8px;padding:32px 20px;text-align:center}
+.team-av{width:80px;height:80px;border-radius:50%;background:var(--grad);margin:0 auto 16px;display:flex;align-items:center;justify-content:center;font-size:2rem}
+.team-card h4{font-weight:700;color:var(--navy);font-size:15px;margin-bottom:4px}
+.team-card p{color:var(--muted);font-size:12px;letter-spacing:.08em;text-transform:uppercase}
 
-    /* ── SERVICES GRID ── */
-    .services-section{padding:76px 0;background:#fff}
-    .services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
-    .service-card{
-      background:var(--offwhite);border:1px solid var(--border);border-radius:6px;
-      padding:36px 26px 28px;text-align:center;
-      transition:box-shadow .25s,transform .25s,border-color .25s;cursor:pointer;
-    }
-    .service-card:hover{box-shadow:0 10px 36px rgba(58,123,213,.14);transform:translateY(-5px);border-color:var(--blue)}
-    .service-icon-wrap{
-      width:66px;height:66px;border-radius:50%;
-      background:var(--grad2);
-      display:flex;align-items:center;justify-content:center;
-      margin:0 auto 18px;font-size:26px;
-      transition:box-shadow .25s;
-    }
-    .service-card:hover .service-icon-wrap{box-shadow:0 4px 20px rgba(232,64,122,.4)}
-    .service-card h3{
-      font-weight:700;font-size:12.5px;letter-spacing:0.1em;
-      text-transform:uppercase;color:var(--navy);margin-bottom:14px;
-    }
-    .sep{border:none;border-top:1px solid var(--border);margin:14px 0}
-    .service-read-more{
-      display:inline-block;font-size:11px;font-weight:700;letter-spacing:0.12em;
-      text-transform:uppercase;text-decoration:none;cursor:pointer;
-      background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
-      border-bottom:1px solid var(--pink);padding-bottom:2px;transition:opacity .2s;
-    }
-    .service-read-more:hover{opacity:.7}
+/* SERVICE DETAIL */
+.sd{padding:72px 0 80px}
+.sd-grid{display:grid;grid-template-columns:2fr 1fr;gap:56px;align-items:start}
+.sd-main h2{font-family:'Libre Baskerville',serif;font-size:1.8rem;color:var(--navy);margin-bottom:20px}
+.sd-main p{color:#4a5568;line-height:1.9;margin-bottom:16px;font-size:15px}
+.sd-main ul{list-style:none;margin:20px 0;display:flex;flex-direction:column;gap:12px}
+.sd-main ul li{display:flex;align-items:flex-start;gap:10px;color:#4a5568;font-size:14px;line-height:1.7}
+.sd-main ul li::before{content:'✓';font-weight:700;font-size:14px;flex-shrink:0;margin-top:1px;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.sd-sidebar{background:var(--off);border:1px solid var(--border);border-radius:8px;padding:32px 28px;position:sticky;top:90px}
+.sd-sidebar h3{font-weight:700;font-size:15px;color:var(--navy);margin-bottom:18px}
+.sb-item{padding:11px 0;border-bottom:1px solid var(--border);font-size:13px;color:var(--muted);cursor:pointer;transition:color .2s;display:flex;align-items:center;gap:8px}
+.sb-item:hover{color:var(--pink)}
+.sb-item::before{content:'→';font-size:12px;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
 
-    /* ── CONTACT FORM ── */
-    .contact-section{background:#f0f5fb;padding:76px 0;border-top:1px solid var(--border)}
-    .contact-form-wrap{
-      max-width:640px;margin:0 auto;background:#fff;
-      border:1px solid var(--border);border-radius:8px;
-      padding:48px 48px 40px;
-      box-shadow:0 4px 24px rgba(22,41,71,.08);
-    }
-    .form-group{margin-bottom:20px}
-    .form-group label{display:block;font-size:11px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);margin-bottom:7px}
-    .form-group input,.form-group textarea,.form-group select{
-      width:100%;border:1px solid #c9d6e8;border-radius:4px;
-      padding:11px 14px;font-family:'Raleway',sans-serif;font-size:14px;color:var(--text);
-      background:#fafbfd;outline:none;transition:border-color .2s,box-shadow .2s;
-    }
-    .form-group input:focus,.form-group textarea:focus,.form-group select:focus{
-      border-color:var(--blue);box-shadow:0 0 0 3px rgba(58,123,213,.12);background:#fff;
-    }
-    .form-group textarea{height:120px;resize:vertical}
-    .form-row{display:grid;grid-template-columns:1fr 1fr;gap:20px}
-    .submit-btn{
-      background:var(--grad);color:#fff;
-      font-family:'Raleway',sans-serif;font-weight:700;font-size:12px;
-      letter-spacing:0.15em;text-transform:uppercase;
-      border:none;padding:13px 36px;border-radius:30px;cursor:pointer;
-      margin-top:8px;transition:opacity .2s,transform .2s;
-      box-shadow:0 4px 16px rgba(232,64,122,.35);
-    }
-    .submit-btn:hover{opacity:.9;transform:translateY(-1px)}
-    .form-success{display:none;margin-top:16px;color:#2e7d32;font-size:13px;font-weight:600}
+/* PORTFOLIO */
+.port-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;padding:72px 0 80px}
+.port-card{border-radius:8px;overflow:hidden;border:1px solid var(--border);transition:transform .25s,box-shadow .25s;cursor:pointer}
+.port-card:hover{transform:translateY(-5px);box-shadow:0 12px 36px rgba(22,41,71,.14)}
+.port-thumb{height:180px;display:flex;align-items:center;justify-content:center;font-size:3rem;background:var(--grad2)}
+.port-info{padding:20px;background:#fff}
+.port-info h4{font-weight:700;color:var(--navy);font-size:14px;margin-bottom:6px}
+.port-info p{color:var(--muted);font-size:12px}
+.port-tag{display:inline-block;background:var(--pink3);color:var(--pink);font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:3px 10px;border-radius:20px;margin-top:10px}
 
-    /* ── PAYMENT SECTION ── */
-    .payment-section{
-      background:var(--grad2);
-      padding:60px 32px;text-align:center;
-    }
-    .payment-section h2{font-family:'Libre Baskerville',serif;font-size:1.7rem;color:#fff;margin-bottom:10px}
-    .payment-section p{color:rgba(255,255,255,.7);font-size:13px;margin-bottom:28px}
+/* PROJECTS */
+.proj-list{display:flex;flex-direction:column;gap:24px;padding:72px 0 80px}
+.proj-row{display:grid;grid-template-columns:80px 1fr auto;align-items:center;gap:24px;background:#fff;border:1px solid var(--border);border-radius:8px;padding:28px 32px;transition:box-shadow .25s,border-color .25s}
+.proj-row:hover{box-shadow:0 8px 28px rgba(22,41,71,.1);border-color:var(--blue)}
+.proj-num{font-family:'Libre Baskerville',serif;font-size:2rem;font-weight:700;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1}
+.proj-row h4{font-weight:700;color:var(--navy);margin-bottom:6px}
+.proj-row p{color:var(--muted);font-size:13px;line-height:1.6}
+.badge{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:5px 14px;border-radius:20px;white-space:nowrap}
+.live{background:var(--pink3);color:var(--pink)}
+.done{background:#e6f4ea;color:#2e7d32}
 
-    /* ── FOOTER ── */
-    footer{background:#0d1a2e;padding:44px 32px 28px}
-    .footer-inner{max-width:1100px;margin:0 auto}
-    .footer-top{display:flex;align-items:center;justify-content:space-between;padding-bottom:28px;border-bottom:1px solid rgba(255,255,255,.08);gap:24px;flex-wrap:wrap}
-    .footer-brand-name{font-weight:800;font-size:12px;letter-spacing:0.2em;text-transform:uppercase;color:#c8d8ea}
-    .footer-brand-name span{background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-    .footer-links{display:flex;gap:28px;flex-wrap:wrap}
-    .footer-links a{color:#7a9bbb;text-decoration:none;font-size:11px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;cursor:pointer;transition:color .2s}
-    .footer-links a:hover{color:var(--pink2)}
-    .footer-bottom{padding-top:20px;font-size:11px;color:#4a6a8a;text-align:center;letter-spacing:.04em}
-    .footer-bottom a{color:var(--blue2);text-decoration:none;cursor:pointer}
+/* PERSONAL BRANDING */
+.pb-hero{background:var(--grad);border-radius:12px;padding:48px 40px;color:#fff;margin-bottom:48px;display:grid;grid-template-columns:1fr auto;align-items:center;gap:32px}
+.pb-hero h2{font-family:'Libre Baskerville',serif;font-size:1.8rem;margin-bottom:12px}
+.pb-hero p{font-size:14px;opacity:.9;line-height:1.8}
+.price-tag{text-align:center;background:rgba(255,255,255,.15);border-radius:8px;padding:24px 32px;flex-shrink:0}
+.price-tag .amt{font-family:'Libre Baskerville',serif;font-size:2.4rem;font-weight:700;display:block}
+.price-tag .per{font-size:11px;opacity:.8;letter-spacing:.1em}
+.pkg-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-bottom:56px}
+.pkg{border:1px solid var(--border);border-radius:8px;padding:28px 22px;text-align:center;transition:border-color .2s,box-shadow .2s}
+.pkg:hover,.pkg.feat{border-color:var(--pink);box-shadow:0 8px 28px rgba(232,64,122,.15)}
+.pkg.feat{background:linear-gradient(160deg,#fff5f9,#fff)}
+.pkg-t{font-weight:800;font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--navy);margin-bottom:10px}
+.pkg-p{font-family:'Libre Baskerville',serif;font-size:1.8rem;font-weight:700;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:16px}
+.pkg-f{list-style:none;text-align:left;display:flex;flex-direction:column;gap:8px;margin-bottom:24px}
+.pkg-f li{font-size:13px;color:var(--muted);display:flex;gap:8px;align-items:flex-start}
+.pkg-f li::before{content:'✓';font-weight:700;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;flex-shrink:0}
 
-    /* ── INNER PAGE HERO ── */
-    .inner-hero{
-      background:var(--grad2);
-      padding:72px 32px 60px;text-align:center;
-      position:relative;overflow:hidden;
-    }
-    .inner-hero::before{
-      content:'';position:absolute;inset:0;
-      background:url('https://static.wixstatic.com/media/nsplsh_282272825cad4c44ace29782b53e57b8~mv2.jpg/v1/fill/w_1920,h_600,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/Image%20by%20Marvin%20Meyer.jpg') center/cover;
-      opacity:.1;
-    }
-    .inner-hero-content{position:relative;z-index:2}
-    .inner-hero h1{font-family:'Libre Baskerville',serif;font-size:clamp(1.8rem,4vw,2.8rem);color:#fff;font-weight:700;margin-bottom:12px}
-    .inner-hero p{color:rgba(255,255,255,.75);font-size:14px;max-width:560px;margin:0 auto}
-    .breadcrumb{margin-bottom:20px;font-size:12px;color:rgba(255,255,255,.5);letter-spacing:.08em}
-    .breadcrumb span{color:var(--pink2);cursor:pointer}
-    .breadcrumb span:hover{text-decoration:underline}
+/* POLICY */
+.pol{max-width:820px;margin:0 auto;padding:72px 32px 80px}
+.pol h2{font-family:'Libre Baskerville',serif;font-size:1.7rem;color:var(--navy);margin-bottom:28px}
+.pol h3{font-size:1rem;font-weight:700;color:var(--navy);margin:28px 0 10px}
+.pol p{color:#4a5568;line-height:1.9;margin-bottom:16px;font-size:14.5px}
+.pol ul{list-style:disc;margin-left:24px;color:#4a5568;font-size:14.5px;line-height:2}
 
-    /* ── ABOUT PAGE ── */
-    .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;padding:76px 0}
-    .about-grid img{width:100%;border-radius:8px;box-shadow:0 12px 40px rgba(22,41,71,.15)}
-    .about-text h2{font-family:'Libre Baskerville',serif;font-size:1.9rem;color:var(--navy);margin-bottom:20px}
-    .about-text p{color:#4a5568;line-height:1.9;margin-bottom:16px;font-size:15px}
-    .stat-row{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;margin-top:40px}
-    .stat-box{text-align:center;padding:28px 16px;background:var(--offwhite);border-radius:8px;border:1px solid var(--border)}
-    .stat-box .num{font-family:'Libre Baskerville',serif;font-size:2.2rem;font-weight:700;
-      background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
-    .stat-box .lbl{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-top:6px}
-    .team-section{padding:60px 0 80px;background:var(--offwhite)}
-    .team-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;margin-top:40px}
-    .team-card{background:#fff;border:1px solid var(--border);border-radius:8px;padding:32px 20px;text-align:center}
-    .team-avatar{width:80px;height:80px;border-radius:50%;background:var(--grad);margin:0 auto 16px;display:flex;align-items:center;justify-content:center;font-size:2rem}
-    .team-card h4{font-weight:700;color:var(--navy);font-size:15px;margin-bottom:4px}
-    .team-card p{color:var(--muted);font-size:12px;letter-spacing:.08em;text-transform:uppercase}
-
-    /* ── SERVICE DETAIL PAGE ── */
-    .service-detail{padding:72px 0 80px}
-    .service-detail-grid{display:grid;grid-template-columns:2fr 1fr;gap:56px;align-items:start}
-    .service-detail h2{font-family:'Libre Baskerville',serif;font-size:1.8rem;color:var(--navy);margin-bottom:20px}
-    .service-detail p{color:#4a5568;line-height:1.9;margin-bottom:16px;font-size:15px}
-    .service-detail ul{list-style:none;margin:20px 0;display:flex;flex-direction:column;gap:12px}
-    .service-detail ul li{display:flex;align-items:flex-start;gap:10px;color:#4a5568;font-size:14px;line-height:1.7}
-    .service-detail ul li::before{
-      content:'✓';font-weight:700;font-size:14px;flex-shrink:0;margin-top:1px;
-      background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
-    }
-    .service-sidebar{background:var(--offwhite);border:1px solid var(--border);border-radius:8px;padding:32px 28px;position:sticky;top:90px}
-    .service-sidebar h3{font-weight:700;font-size:15px;color:var(--navy);margin-bottom:18px}
-    .sidebar-item{padding:11px 0;border-bottom:1px solid var(--border);font-size:13px;color:var(--muted);cursor:pointer;transition:color .2s;display:flex;align-items:center;gap:8px}
-    .sidebar-item:hover{color:var(--pink)}
-    .sidebar-item::before{content:'→';font-size:12px;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-    .sidebar-cta{margin-top:24px;width:100%;text-align:center}
-
-    /* ── PORTFOLIO PAGE ── */
-    .portfolio-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;padding:72px 0 80px}
-    .port-card{border-radius:8px;overflow:hidden;border:1px solid var(--border);transition:transform .25s,box-shadow .25s;cursor:pointer}
-    .port-card:hover{transform:translateY(-5px);box-shadow:0 12px 36px rgba(22,41,71,.14)}
-    .port-thumb{height:200px;display:flex;align-items:center;justify-content:center;font-size:3rem;background:var(--grad2)}
-    .port-info{padding:20px;background:#fff}
-    .port-info h4{font-weight:700;color:var(--navy);font-size:14px;margin-bottom:6px}
-    .port-info p{color:var(--muted);font-size:12px}
-    .port-tag{display:inline-block;background:var(--pink3);color:var(--pink);font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:3px 10px;border-radius:20px;margin-top:10px}
-
-    /* ── PROJECTS PAGE ── */
-    .projects-list{display:flex;flex-direction:column;gap:24px;padding:72px 0 80px}
-    .project-row{display:grid;grid-template-columns:80px 1fr auto;align-items:center;gap:24px;
-      background:#fff;border:1px solid var(--border);border-radius:8px;padding:28px 32px;
-      transition:box-shadow .25s,border-color .25s;}
-    .project-row:hover{box-shadow:0 8px 28px rgba(22,41,71,.1);border-color:var(--blue)}
-    .project-num{font-family:'Libre Baskerville',serif;font-size:2rem;font-weight:700;
-      background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1}
-    .project-row h4{font-weight:700;color:var(--navy);margin-bottom:6px}
-    .project-row p{color:var(--muted);font-size:13px;line-height:1.6}
-    .project-status{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:5px 14px;border-radius:20px;white-space:nowrap}
-    .status-done{background:#e6f4ea;color:#2e7d32}
-    .status-live{background:var(--pink3);color:var(--pink)}
-
-    /* ── PERSONAL BRANDING PAGE ── */
-    .branding-hero-box{
-      background:var(--grad);border-radius:12px;padding:48px 40px;color:#fff;margin-bottom:48px;
-      display:grid;grid-template-columns:1fr auto;align-items:center;gap:32px;
-    }
-    .branding-hero-box h2{font-family:'Libre Baskerville',serif;font-size:1.8rem;margin-bottom:12px}
-    .branding-hero-box p{font-size:14px;opacity:.9;line-height:1.8}
-    .branding-hero-box .price-tag{
-      text-align:center;background:rgba(255,255,255,.15);backdrop-filter:blur(4px);
-      border-radius:8px;padding:24px 32px;flex-shrink:0;
-    }
-    .price-tag .amount{font-family:'Libre Baskerville',serif;font-size:2.4rem;font-weight:700;display:block}
-    .price-tag .period{font-size:11px;opacity:.8;letter-spacing:.1em}
-    .branding-packages{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-bottom:56px}
-    .pkg-card{border:1px solid var(--border);border-radius:8px;padding:28px 22px;text-align:center;transition:border-color .2s,box-shadow .2s}
-    .pkg-card:hover,.pkg-card.featured{border-color:var(--pink);box-shadow:0 8px 28px rgba(232,64,122,.15)}
-    .pkg-card.featured{background:linear-gradient(160deg,#fff5f9,#fff)}
-    .pkg-title{font-weight:800;font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--navy);margin-bottom:10px}
-    .pkg-price{font-family:'Libre Baskerville',serif;font-size:1.8rem;font-weight:700;
-      background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:16px}
-    .pkg-features{list-style:none;text-align:left;display:flex;flex-direction:column;gap:8px;margin-bottom:24px}
-    .pkg-features li{font-size:13px;color:var(--muted);display:flex;gap:8px;align-items:flex-start}
-    .pkg-features li::before{content:'✓';font-weight:700;
-      background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;flex-shrink:0}
-
-    /* ── LEGAL / POLICY PAGES ── */
-    .policy-content{max-width:820px;margin:0 auto;padding:72px 32px 80px}
-    .policy-content h2{font-family:'Libre Baskerville',serif;font-size:1.7rem;color:var(--navy);margin-bottom:28px}
-    .policy-content h3{font-size:1rem;font-weight:700;color:var(--navy);margin:28px 0 10px}
-    .policy-content p{color:#4a5568;line-height:1.9;margin-bottom:16px;font-size:14.5px}
-    .policy-content ul{list-style:disc;margin-left:24px;color:#4a5568;font-size:14.5px;line-height:2}
-
-    /* ── PINK ACCENT BAND ── */
-    .accent-band{
-      background:var(--grad);
-      padding:48px 32px;text-align:center;color:#fff;
-    }
-    .accent-band h3{font-family:'Libre Baskerville',serif;font-size:1.6rem;margin-bottom:10px}
-    .accent-band p{opacity:.85;font-size:14px;margin-bottom:24px}
-
-    /* ── RESPONSIVE ── */
-    @media(max-width:900px){
-      .nav-links,.nav-pay-btn{display:none}
-      .hamburger{display:flex}
-      .hero{height:380px}
-      .services-grid{grid-template-columns:1fr 1fr}
-      .about-grid{grid-template-columns:1fr}
-      .about-grid img{display:none}
-      .service-detail-grid{grid-template-columns:1fr}
-      .portfolio-grid{grid-template-columns:1fr 1fr}
-      .team-grid{grid-template-columns:1fr 1fr}
-      .branding-packages{grid-template-columns:1fr}
-      .branding-hero-box{grid-template-columns:1fr}
-      .stat-row{grid-template-columns:1fr 1fr}
-      .contact-form-wrap{padding:28px 20px}
-      .form-row{grid-template-columns:1fr}
-      .footer-top{flex-direction:column;align-items:flex-start}
-    }
-    @media(max-width:540px){
-      .services-grid,.portfolio-grid,.team-grid{grid-template-columns:1fr}
-      .stat-row{grid-template-columns:1fr}
-      .project-row{grid-template-columns:1fr;gap:12px}
-      .project-num{font-size:1.4rem}
-    }
-  </style>
+/* RESPONSIVE */
+@media(max-width:900px){
+  nav,.paybtn{display:none}
+  .hamburger{display:flex}
+  .hero{height:380px}
+  .svc-grid{grid-template-columns:1fr 1fr}
+  .about-grid{grid-template-columns:1fr}
+  .about-grid img{display:none}
+  .sd-grid{grid-template-columns:1fr}
+  .port-grid{grid-template-columns:1fr 1fr}
+  .team-grid{grid-template-columns:1fr 1fr}
+  .pkg-grid{grid-template-columns:1fr}
+  .pb-hero{grid-template-columns:1fr}
+  .stat-row{grid-template-columns:1fr 1fr}
+  .ct-wrap{padding:28px 20px}
+  .fg2{grid-template-columns:1fr}
+  .ft-top{flex-direction:column;align-items:flex-start}
+}
+@media(max-width:540px){
+  .svc-grid,.port-grid,.team-grid{grid-template-columns:1fr}
+  .stat-row{grid-template-columns:1fr}
+  .proj-row{grid-template-columns:1fr;gap:12px}
+}
+</style>
 </head>
 <body>
 
+<!-- JS ROUTER — defined first so onclick always works -->
+<script>
+function go(p){
+  document.querySelectorAll('.pv').forEach(function(el){el.classList.remove('on')});
+  var t=document.getElementById('p-'+p);
+  if(t){t.classList.add('on')}else{document.getElementById('p-home').classList.add('on')}
+  document.querySelectorAll('nav li a').forEach(function(a){a.classList.remove('cur')});
+  var na=document.getElementById('nl-'+p);
+  if(na){na.classList.add('cur')}
+  window.scrollTo({top:0,behavior:'smooth'});
+  var m=document.getElementById('mob-menu');
+  if(m)m.style.display='none';
+}
+function sf(e,id){
+  e.preventDefault();
+  var el=document.getElementById('fs-'+id);
+  if(el){el.style.display='block';e.target.reset();}
+}
+function mob(){
+  var m=document.getElementById('mob-menu');
+  m.style.display=(m.style.display==='block')?'none':'block';
+}
+window.addEventListener('DOMContentLoaded',function(){go('home')});
+</script>
+
 <!-- TOP BAR -->
-<div class="top-bar">✦ Reality Reach Ventures &nbsp;·&nbsp; Creative Agency Since 2021 ✦</div>
+<div class="topbar">✦ Reality Reach Ventures &nbsp;·&nbsp; Creative Agency Since 2021 ✦</div>
 
 <!-- HEADER -->
 <header>
   <div class="nav-inner">
-    <div class="nav-brand" onclick="go('home')">
+    <button class="brand-btn" onclick="go('home')">
       <img src="https://static.wixstatic.com/media/19aea9_8eda9d3f2fdb499e881aa416d50fee88~mv2.jpg/v1/fill/w_163,h_163,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/RealiTY%20Reach%20logo_edited.jpg" alt="Logo"/>
       <div class="brand-name">Reality <span>Reach</span><br>Ventures</div>
-    </div>
-    <ul class="nav-links" id="navLinks">
-      <li><a onclick="go('home')" id="nav-home">Home</a></li>
-      <li><a onclick="go('about')" id="nav-about">About Us</a></li>
-      <li><a onclick="go('contact')" id="nav-contact">Contact Us</a></li>
+    </button>
+    <nav>
+      <li><a href="javascript:void(0)" id="nl-home"    onclick="go('home')">Home</a></li>
+      <li><a href="javascript:void(0)" id="nl-about"   onclick="go('about')">About Us</a></li>
+      <li><a href="javascript:void(0)" id="nl-contact" onclick="go('contact')">Contact Us</a></li>
       <li>
-        <a onclick="go('services')" id="nav-services">Services ▾</a>
-        <div class="dropdown">
-          <a onclick="go('personal-branding')">Personal Branding</a>
-          <a onclick="go('service-web')">Web Development</a>
-          <a onclick="go('service-print')">Print Design</a>
-          <a onclick="go('service-smm')">Social Media Marketing</a>
-          <a onclick="go('service-audit')">Website Audit</a>
-          <a onclick="go('service-branding')">Branding</a>
-          <a onclick="go('service-funnel')">Funnel Building</a>
-          <a onclick="go('service-bizlisting')">Business Listing</a>
-          <a onclick="go('service-amazon')">Amazon Listing</a>
-          <a onclick="go('service-app')">Mobile App</a>
+        <a href="javascript:void(0)" id="nl-services" onclick="go('services')">Services ▾</a>
+        <div class="dd">
+          <a href="javascript:void(0)" onclick="go('personal-branding')">Personal Branding</a>
+          <a href="javascript:void(0)" onclick="go('svc-web')">Web Development</a>
+          <a href="javascript:void(0)" onclick="go('svc-print')">Print Design</a>
+          <a href="javascript:void(0)" onclick="go('svc-smm')">Social Media Marketing</a>
+          <a href="javascript:void(0)" onclick="go('svc-audit')">Website Audit</a>
+          <a href="javascript:void(0)" onclick="go('svc-branding')">Branding</a>
+          <a href="javascript:void(0)" onclick="go('svc-funnel')">Funnel Building</a>
+          <a href="javascript:void(0)" onclick="go('svc-bizlist')">Business Listing</a>
+          <a href="javascript:void(0)" onclick="go('svc-amazon')">Amazon Listing</a>
+          <a href="javascript:void(0)" onclick="go('svc-app')">Mobile App</a>
         </div>
       </li>
-      <li><a onclick="go('projects')" id="nav-projects">Projects</a></li>
-      <li><a onclick="go('portfolio')" id="nav-portfolio">Portfolio</a></li>
-    </ul>
-    <a class="nav-pay-btn" href="https://rzp.io/l/dg0FZ4m7Xo" target="_blank">Pay Now</a>
-    <div class="hamburger" onclick="toggleMobileMenu()"><span></span><span></span><span></span></div>
+      <li><a href="javascript:void(0)" id="nl-projects"  onclick="go('projects')">Projects</a></li>
+      <li><a href="javascript:void(0)" id="nl-portfolio" onclick="go('portfolio')">Portfolio</a></li>
+    </nav>
+    <a class="paybtn" href="https://rzp.io/l/dg0FZ4m7Xo" target="_blank">Pay Now</a>
+    <button class="hamburger" onclick="mob()"><span></span><span></span><span></span></button>
+  </div>
+  <div id="mob-menu">
+    <a href="javascript:void(0)" onclick="go('home')">Home</a>
+    <a href="javascript:void(0)" onclick="go('about')">About Us</a>
+    <a href="javascript:void(0)" onclick="go('contact')">Contact Us</a>
+    <a href="javascript:void(0)" onclick="go('services')">Services</a>
+    <a href="javascript:void(0)" onclick="go('personal-branding')">Personal Branding</a>
+    <a href="javascript:void(0)" onclick="go('projects')">Projects</a>
+    <a href="javascript:void(0)" onclick="go('portfolio')">Portfolio</a>
+    <a href="javascript:void(0)" onclick="go('privacy')">Privacy Policy</a>
+    <a href="javascript:void(0)" onclick="go('refund')">Refund Policy</a>
+    <a href="javascript:void(0)" onclick="go('terms')">Terms &amp; Conditions</a>
+    <a class="mob-pay" href="https://rzp.io/l/dg0FZ4m7Xo" target="_blank">Pay Now</a>
   </div>
 </header>
 
-<!-- ══════════════════ HOME PAGE ══════════════════ -->
-<div id="page-home" class="page-view active">
-
+<!-- ═══════════ HOME ═══════════ -->
+<div id="p-home" class="pv">
   <section class="hero">
-    <img class="hero-img" src="https://static.wixstatic.com/media/nsplsh_282272825cad4c44ace29782b53e57b8~mv2.jpg/v1/fill/w_1920,h_600,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/Image%20by%20Marvin%20Meyer.jpg" alt="Hero"/>
-    <div class="hero-overlay"></div>
-    <div class="hero-text">
-      <h1>Transforming Ideas:&nbsp;&nbsp;Your Brand, Our Passion.</h1>
+    <img src="https://static.wixstatic.com/media/nsplsh_282272825cad4c44ace29782b53e57b8~mv2.jpg/v1/fill/w_1920,h_600,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/Image%20by%20Marvin%20Meyer.jpg" alt="Hero"/>
+    <div class="hero-ov"></div>
+    <div class="hero-txt">
+      <h1>Transforming Ideas: Your Brand, Our Passion.</h1>
       <p>Creative Agency driven by design, data, and passion — helping brands grow since 2021.</p>
       <div class="hero-btns">
-        <button class="btn-primary" onclick="go('services')">Our Services</button>
-        <button class="btn-outline" onclick="go('contact')">Get In Touch</button>
+        <button class="btn-p" onclick="go('services')">Our Services</button>
+        <button class="btn-o" onclick="go('contact')">Get In Touch</button>
       </div>
     </div>
   </section>
-
-  <section class="about-strip">
+  <section class="ab-strip">
     <div class="wrap">
-      <div class="section-eyebrow">About</div>
-      <div class="title-bar"></div>
+      <div class="eyebrow">About</div><br/>
+      <div class="tbar"></div>
       <h2>Transforming Brands</h2>
       <p>Since 2021, realityreach has helped companies strategize and implement their creative visions. Our growing Creative Agency is driven by passionate thinkers who work closely with each brand to create strategies that produce unparalleled results. We love content and design, but thrive on the data necessary to succeed in a digital world.</p>
       <br/><br/>
-      <button class="btn-primary" onclick="go('about')">Learn More About Us</button>
+      <button class="btn-p" onclick="go('about')">Learn More About Us</button>
     </div>
   </section>
-
-  <section class="services-section">
+  <section class="svc-sec">
     <div class="wrap">
       <div style="text-align:center;margin-bottom:52px">
-        <div class="section-eyebrow">What We Do</div>
-        <div class="title-bar"></div>
-        <h2 class="section-title">Our Services</h2>
-        <p class="section-lead">Service Information —</p>
+        <div class="eyebrow">What We Do</div><br/>
+        <div class="tbar"></div>
+        <h2 class="sec-title">Our Services</h2>
+        <p class="sec-sub">Click any service to learn more</p>
       </div>
-      <div class="services-grid">
-        <div class="service-card"><div class="service-icon-wrap">🌐</div><h3>Web Development</h3><hr class="sep"/><span class="service-read-more" onclick="go('service-web')">Read More</span></div>
-        <div class="service-card"><div class="service-icon-wrap">🖨️</div><h3>Print Design</h3><hr class="sep"/><span class="service-read-more" onclick="go('service-print')">Read More</span></div>
-        <div class="service-card"><div class="service-icon-wrap">📱</div><h3>Social Media Marketing</h3><hr class="sep"/><span class="service-read-more" onclick="go('service-smm')">Read More</span></div>
-        <div class="service-card"><div class="service-icon-wrap">🔍</div><h3>Website Audit</h3><hr class="sep"/><span class="service-read-more" onclick="go('service-audit')">Read More</span></div>
-        <div class="service-card"><div class="service-icon-wrap">✦</div><h3>Branding</h3><hr class="sep"/><span class="service-read-more" onclick="go('service-branding')">Read More</span></div>
-        <div class="service-card"><div class="service-icon-wrap">🚀</div><h3>Funnel Building</h3><hr class="sep"/><span class="service-read-more" onclick="go('service-funnel')">Read More</span></div>
-        <div class="service-card"><div class="service-icon-wrap">📋</div><h3>Business Listing</h3><hr class="sep"/><span class="service-read-more" onclick="go('service-bizlisting')">Read More</span></div>
-        <div class="service-card"><div class="service-icon-wrap">📦</div><h3>Amazon Listing</h3><hr class="sep"/><span class="service-read-more" onclick="go('service-amazon')">Read More</span></div>
-        <div class="service-card"><div class="service-icon-wrap">📲</div><h3>Mobile App</h3><hr class="sep"/><span class="service-read-more" onclick="go('service-app')">Read More</span></div>
+      <div class="svc-grid">
+        <div class="svc-card" onclick="go('svc-web')">    <div class="svc-ico">🌐</div><h3>Web Development</h3>   <hr class="sep"/><span class="rdm">Read More</span></div>
+        <div class="svc-card" onclick="go('svc-print')">  <div class="svc-ico">🖨️</div><h3>Print Design</h3>      <hr class="sep"/><span class="rdm">Read More</span></div>
+        <div class="svc-card" onclick="go('svc-smm')">    <div class="svc-ico">📱</div><h3>Social Media Marketing</h3><hr class="sep"/><span class="rdm">Read More</span></div>
+        <div class="svc-card" onclick="go('svc-audit')">  <div class="svc-ico">🔍</div><h3>Website Audit</h3>     <hr class="sep"/><span class="rdm">Read More</span></div>
+        <div class="svc-card" onclick="go('svc-branding')"><div class="svc-ico">✦</div><h3>Branding</h3>          <hr class="sep"/><span class="rdm">Read More</span></div>
+        <div class="svc-card" onclick="go('svc-funnel')"> <div class="svc-ico">🚀</div><h3>Funnel Building</h3>   <hr class="sep"/><span class="rdm">Read More</span></div>
+        <div class="svc-card" onclick="go('svc-bizlist')"><div class="svc-ico">📋</div><h3>Business Listing</h3>  <hr class="sep"/><span class="rdm">Read More</span></div>
+        <div class="svc-card" onclick="go('svc-amazon')"> <div class="svc-ico">📦</div><h3>Amazon Listing</h3>    <hr class="sep"/><span class="rdm">Read More</span></div>
+        <div class="svc-card" onclick="go('svc-app')">    <div class="svc-ico">📲</div><h3>Mobile App</h3>        <hr class="sep"/><span class="rdm">Read More</span></div>
       </div>
     </div>
   </section>
-
-  <div class="accent-band">
+  <div class="accent">
     <h3>Ready to elevate your brand?</h3>
     <p>Let's build something remarkable together.</p>
-    <button class="btn-outline" onclick="go('contact')">Connect With Us</button>
+    <button class="btn-o" onclick="go('contact')">Connect With Us</button>
   </div>
-
-  <section class="contact-section" id="home-contact">
+  <section class="ct-sec">
     <div class="wrap">
       <div style="text-align:center;margin-bottom:44px">
-        <div class="section-eyebrow">Contact</div>
-        <div class="title-bar"></div>
-        <h2 class="section-title">Connect With Us</h2>
+        <div class="eyebrow">Contact</div><br/>
+        <div class="tbar"></div>
+        <h2 class="sec-title">Connect With Us</h2>
       </div>
-      <div class="contact-form-wrap">
-        <form onsubmit="submitForm(event,'hf')">
-          <div class="form-row">
-            <div class="form-group"><label>Name</label><input type="text" placeholder="Your name" required/></div>
-            <div class="form-group"><label>Email</label><input type="email" placeholder="your@email.com" required/></div>
-          </div>
-          <div class="form-group"><label>Subject</label><input type="text" placeholder="Subject"/></div>
-          <div class="form-group"><label>Message</label><textarea placeholder="Your message…" required></textarea></div>
-          <button type="submit" class="submit-btn">Submit</button>
-          <div class="form-success" id="hf-success">Thanks for submitting! We'll be in touch soon.</div>
+      <div class="ct-wrap">
+        <form onsubmit="sf(event,'h')">
+          <div class="fg2"><div class="fg"><label>Name</label><input type="text" placeholder="Your name" required/></div><div class="fg"><label>Email</label><input type="email" placeholder="your@email.com" required/></div></div>
+          <div class="fg"><label>Subject</label><input type="text" placeholder="Subject"/></div>
+          <div class="fg"><label>Message</label><textarea placeholder="Your message…" required></textarea></div>
+          <button type="submit" class="sub-btn">Submit</button>
+          <div class="fsuc" id="fs-h">Thanks for submitting! We'll be in touch soon.</div>
         </form>
       </div>
     </div>
   </section>
-
-  <section class="payment-section">
+  <section class="pay-sec">
     <h2>Payment Link</h2>
     <p>Securely pay for our services using the link below.</p>
-    <a class="btn-primary" href="https://rzp.io/l/dg0FZ4m7Xo" target="_blank">Pay Now</a>
+    <a class="btn-p" href="https://rzp.io/l/dg0FZ4m7Xo" target="_blank">Pay Now</a>
   </section>
+</div>
 
-</div><!-- /home -->
-
-
-<!-- ══════════════════ ABOUT PAGE ══════════════════ -->
-<div id="page-about" class="page-view">
-  <div class="inner-hero">
-    <div class="inner-hero-content">
-      <div class="breadcrumb"><span onclick="go('home')">Home</span> &rsaquo; About Us</div>
-      <h1>About Us</h1>
-      <p>The creative minds behind Reality Reach Ventures</p>
-    </div>
-  </div>
+<!-- ═══════════ ABOUT ═══════════ -->
+<div id="p-about" class="pv">
+  <div class="ihero"><div class="ihero-c"><div class="bc"><a href="javascript:void(0)" onclick="go('home')">Home</a> › About Us</div><h1>About Us</h1><p>The creative minds behind Reality Reach Ventures</p></div></div>
   <div class="wrap">
     <div class="about-grid">
-      <div class="about-text">
-        <div class="section-eyebrow">Our Story</div>
-        <div class="title-bar"></div>
+      <div class="about-txt">
+        <div class="eyebrow">Our Story</div><br/><div class="tbar"></div>
         <h2>Transforming Brands Since 2021</h2>
         <p>Reality Reach Ventures was born out of a passion for creative storytelling and data-driven results. We saw a gap in the market for an agency that truly blends artistic vision with measurable outcomes — and we filled it.</p>
-        <p>Our growing Creative Agency is driven by passionate thinkers who work closely with each brand to create strategies that produce unparalleled results. We love content and design, but thrive on the data necessary to succeed in a digital world.</p>
+        <p>Our growing Creative Agency is driven by passionate thinkers who work closely with each brand. We love content and design, but thrive on the data necessary to succeed in a digital world.</p>
         <p>We partner with brands of all sizes — from startups finding their voice to established businesses reinventing themselves — and deliver work that moves people.</p>
-        <button class="btn-primary" onclick="go('contact')">Work With Us</button>
+        <button class="btn-p" onclick="go('contact')">Work With Us</button>
       </div>
       <img src="https://static.wixstatic.com/media/nsplsh_282272825cad4c44ace29782b53e57b8~mv2.jpg/v1/fill/w_800,h_600,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/Image%20by%20Marvin%20Meyer.jpg" alt="About"/>
     </div>
-    <div class="stat-row" style="margin-bottom:80px">
+    <div class="stat-row">
       <div class="stat-box"><div class="num">4+</div><div class="lbl">Years Active</div></div>
       <div class="stat-box"><div class="num">9+</div><div class="lbl">Core Services</div></div>
       <div class="stat-box"><div class="num">50+</div><div class="lbl">Happy Clients</div></div>
     </div>
   </div>
-  <div class="team-section">
+  <div class="team-sec">
     <div class="wrap">
-      <div style="text-align:center;margin-bottom:40px">
-        <div class="section-eyebrow">Our People</div>
-        <div class="title-bar"></div>
-        <h2 class="section-title">The Team</h2>
-      </div>
+      <div style="text-align:center;margin-bottom:40px"><div class="eyebrow">Our People</div><br/><div class="tbar"></div><h2 class="sec-title">The Team</h2></div>
       <div class="team-grid">
-        <div class="team-card"><div class="team-avatar">👨‍💼</div><h4>Founder & CEO</h4><p>Creative Strategy</p></div>
-        <div class="team-card"><div class="team-avatar">👩‍🎨</div><h4>Lead Designer</h4><p>Brand & Visual Identity</p></div>
-        <div class="team-card"><div class="team-avatar">👨‍💻</div><h4>Tech Lead</h4><p>Web & App Development</p></div>
+        <div class="team-card"><div class="team-av">👨‍💼</div><h4>Founder &amp; CEO</h4><p>Creative Strategy</p></div>
+        <div class="team-card"><div class="team-av">👩‍🎨</div><h4>Lead Designer</h4><p>Brand &amp; Visual Identity</p></div>
+        <div class="team-card"><div class="team-av">👨‍💻</div><h4>Tech Lead</h4><p>Web &amp; App Development</p></div>
       </div>
     </div>
   </div>
-</div><!-- /about -->
+</div>
 
-
-<!-- ══════════════════ CONTACT PAGE ══════════════════ -->
-<div id="page-contact" class="page-view">
-  <div class="inner-hero">
-    <div class="inner-hero-content">
-      <div class="breadcrumb"><span onclick="go('home')">Home</span> &rsaquo; Contact Us</div>
-      <h1>Contact Us</h1>
-      <p>We'd love to hear about your project</p>
-    </div>
-  </div>
+<!-- ═══════════ CONTACT ═══════════ -->
+<div id="p-contact" class="pv">
+  <div class="ihero"><div class="ihero-c"><div class="bc"><a href="javascript:void(0)" onclick="go('home')">Home</a> › Contact Us</div><h1>Contact Us</h1><p>We'd love to hear about your project</p></div></div>
   <div class="wrap" style="padding-top:64px;padding-bottom:80px;display:grid;grid-template-columns:1fr 1.2fr;gap:64px;align-items:start">
     <div>
-      <div class="section-eyebrow">Get In Touch</div>
-      <div class="title-bar"></div>
-      <h2 class="section-title" style="margin-bottom:18px">Let's Build Something Great</h2>
+      <div class="eyebrow">Get In Touch</div><br/><div class="tbar"></div>
+      <h2 class="sec-title" style="margin-bottom:18px">Let's Build Something Great</h2>
       <p style="color:#4a5568;line-height:1.9;margin-bottom:32px;font-size:15px">Whether you're a startup or an established brand, we're here to help you grow. Reach out and our team will get back to you within 24 hours.</p>
       <div style="display:flex;flex-direction:column;gap:18px">
         <div style="display:flex;align-items:center;gap:14px;color:#4a5568;font-size:14px"><span style="font-size:20px">📍</span> India</div>
         <div style="display:flex;align-items:center;gap:14px;color:#4a5568;font-size:14px"><span style="font-size:20px">🌐</span> realityreach.in</div>
-        <div style="display:flex;align-items:center;gap:14px;color:#4a5568;font-size:14px"><span style="font-size:20px">💳</span> <a href="https://rzp.io/l/dg0FZ4m7Xo" target="_blank" style="color:var(--blue);text-decoration:none">Pay Now via Razorpay</a></div>
+        <div style="display:flex;align-items:center;gap:14px;font-size:14px"><span style="font-size:20px">💳</span><a href="https://rzp.io/l/dg0FZ4m7Xo" target="_blank" style="color:var(--blue);text-decoration:none">Pay Now via Razorpay</a></div>
       </div>
     </div>
-    <div class="contact-form-wrap" style="margin:0">
-      <form onsubmit="submitForm(event,'cf')">
-        <div class="form-row">
-          <div class="form-group"><label>Name</label><input type="text" placeholder="Your name" required/></div>
-          <div class="form-group"><label>Email</label><input type="email" placeholder="your@email.com" required/></div>
-        </div>
-        <div class="form-group"><label>Subject</label><input type="text" placeholder="Subject"/></div>
-        <div class="form-group"><label>Message</label><textarea placeholder="Tell us about your project…" required></textarea></div>
-        <button type="submit" class="submit-btn">Send Message</button>
-        <div class="form-success" id="cf-success">Thanks for submitting! We'll be in touch soon.</div>
+    <div class="ct-wrap" style="margin:0;box-shadow:none;border:1px solid var(--border)">
+      <form onsubmit="sf(event,'c')">
+        <div class="fg2"><div class="fg"><label>Name</label><input type="text" placeholder="Your name" required/></div><div class="fg"><label>Email</label><input type="email" placeholder="your@email.com" required/></div></div>
+        <div class="fg"><label>Subject</label><input type="text" placeholder="Subject"/></div>
+        <div class="fg"><label>Message</label><textarea placeholder="Tell us about your project…" required></textarea></div>
+        <button type="submit" class="sub-btn">Send Message</button>
+        <div class="fsuc" id="fs-c">Thanks! We'll be in touch soon.</div>
       </form>
     </div>
   </div>
-</div><!-- /contact -->
+</div>
 
-
-<!-- ══════════════════ SERVICES LIST PAGE ══════════════════ -->
-<div id="page-services" class="page-view">
-  <div class="inner-hero">
-    <div class="inner-hero-content">
-      <div class="breadcrumb"><span onclick="go('home')">Home</span> &rsaquo; Services</div>
-      <h1>Our Services</h1>
-      <p>End-to-end creative and digital solutions for your brand</p>
-    </div>
-  </div>
-  <section class="services-section">
+<!-- ═══════════ SERVICES LIST ═══════════ -->
+<div id="p-services" class="pv">
+  <div class="ihero"><div class="ihero-c"><div class="bc"><a href="javascript:void(0)" onclick="go('home')">Home</a> › Services</div><h1>Our Services</h1><p>End-to-end creative and digital solutions</p></div></div>
+  <section class="svc-sec">
     <div class="wrap">
-      <div class="services-grid">
-        <div class="service-card"><div class="service-icon-wrap">🌐</div><h3>Web Development</h3><hr class="sep"/><span class="service-read-more" onclick="go('service-web')">Read More</span></div>
-        <div class="service-card"><div class="service-icon-wrap">🖨️</div><h3>Print Design</h3><hr class="sep"/><span class="service-read-more" onclick="go('service-print')">Read More</span></div>
-        <div class="service-card"><div class="service-icon-wrap">📱</div><h3>Social Media Marketing</h3><hr class="sep"/><span class="service-read-more" onclick="go('service-smm')">Read More</span></div>
-        <div class="service-card"><div class="service-icon-wrap">🔍</div><h3>Website Audit</h3><hr class="sep"/><span class="service-read-more" onclick="go('service-audit')">Read More</span></div>
-        <div class="service-card"><div class="service-icon-wrap">✦</div><h3>Branding</h3><hr class="sep"/><span class="service-read-more" onclick="go('service-branding')">Read More</span></div>
-        <div class="service-card"><div class="service-icon-wrap">🚀</div><h3>Funnel Building</h3><hr class="sep"/><span class="service-read-more" onclick="go('service-funnel')">Read More</span></div>
-        <div class="service-card"><div class="service-icon-wrap">📋</div><h3>Business Listing</h3><hr class="sep"/><span class="service-read-more" onclick="go('service-bizlisting')">Read More</span></div>
-        <div class="service-card"><div class="service-icon-wrap">📦</div><h3>Amazon Listing</h3><hr class="sep"/><span class="service-read-more" onclick="go('service-amazon')">Read More</span></div>
-        <div class="service-card"><div class="service-icon-wrap">📲</div><h3>Mobile App</h3><hr class="sep"/><span class="service-read-more" onclick="go('service-app')">Read More</span></div>
-        <div class="service-card"><div class="service-icon-wrap">🎯</div><h3>Personal Branding</h3><hr class="sep"/><span class="service-read-more" onclick="go('personal-branding')">Read More</span></div>
+      <div class="svc-grid">
+        <div class="svc-card" onclick="go('svc-web')">    <div class="svc-ico">🌐</div><h3>Web Development</h3>      <hr class="sep"/><span class="rdm">Read More</span></div>
+        <div class="svc-card" onclick="go('svc-print')">  <div class="svc-ico">🖨️</div><h3>Print Design</h3>        <hr class="sep"/><span class="rdm">Read More</span></div>
+        <div class="svc-card" onclick="go('svc-smm')">    <div class="svc-ico">📱</div><h3>Social Media Marketing</h3><hr class="sep"/><span class="rdm">Read More</span></div>
+        <div class="svc-card" onclick="go('svc-audit')">  <div class="svc-ico">🔍</div><h3>Website Audit</h3>       <hr class="sep"/><span class="rdm">Read More</span></div>
+        <div class="svc-card" onclick="go('svc-branding')"><div class="svc-ico">✦</div><h3>Branding</h3>             <hr class="sep"/><span class="rdm">Read More</span></div>
+        <div class="svc-card" onclick="go('svc-funnel')"> <div class="svc-ico">🚀</div><h3>Funnel Building</h3>     <hr class="sep"/><span class="rdm">Read More</span></div>
+        <div class="svc-card" onclick="go('svc-bizlist')"><div class="svc-ico">📋</div><h3>Business Listing</h3>    <hr class="sep"/><span class="rdm">Read More</span></div>
+        <div class="svc-card" onclick="go('svc-amazon')"> <div class="svc-ico">📦</div><h3>Amazon Listing</h3>      <hr class="sep"/><span class="rdm">Read More</span></div>
+        <div class="svc-card" onclick="go('svc-app')">    <div class="svc-ico">📲</div><h3>Mobile App</h3>          <hr class="sep"/><span class="rdm">Read More</span></div>
+        <div class="svc-card" onclick="go('personal-branding')"><div class="svc-ico">🎯</div><h3>Personal Branding</h3><hr class="sep"/><span class="rdm">Read More</span></div>
       </div>
     </div>
   </section>
-</div><!-- /services -->
+</div>
 
-
-<!-- ══════════════════ SERVICE DETAIL TEMPLATE MACRO ══════════════════ -->
+<!-- ═══════════ SERVICE DETAIL HELPER ═══════════ -->
 <!-- Web Development -->
-<div id="page-service-web" class="page-view">
-  <div class="inner-hero"><div class="inner-hero-content"><div class="breadcrumb"><span onclick="go('home')">Home</span> &rsaquo; <span onclick="go('services')">Services</span> &rsaquo; Web Development</div><h1>Web Development</h1><p>Crafting fast, beautiful, and functional websites</p></div></div>
-  <div class="wrap"><div class="service-detail"><div class="service-detail-grid">
-    <div><div class="section-eyebrow">Web Development</div><div class="title-bar"></div><h2>Websites That Work as Hard as You Do</h2><p>We design and develop custom websites that are visually striking, lightning fast, and built to convert. From landing pages to full e-commerce platforms, every project is crafted with precision and purpose.</p><p>Our development process starts with understanding your business goals and audience, then building an experience that speaks directly to them — on every device.</p><ul><li>Custom website design & development</li><li>Responsive & mobile-first layouts</li><li>E-commerce & payment integration</li><li>SEO-optimised structure & performance</li><li>CMS integration (WordPress, Wix, Webflow)</li><li>Ongoing maintenance & support</li></ul><button class="btn-primary" onclick="go('contact')" style="margin-top:24px">Get a Quote</button></div>
-    <div class="service-sidebar"><h3>Other Services</h3><div class="sidebar-item" onclick="go('service-print')">Print Design</div><div class="sidebar-item" onclick="go('service-smm')">Social Media Marketing</div><div class="sidebar-item" onclick="go('service-audit')">Website Audit</div><div class="sidebar-item" onclick="go('service-branding')">Branding</div><div class="sidebar-item" onclick="go('service-funnel')">Funnel Building</div><div class="sidebar-cta"><button class="btn-primary" onclick="go('contact')">Contact Us</button></div></div>
+<div id="p-svc-web" class="pv">
+  <div class="ihero"><div class="ihero-c"><div class="bc"><a href="javascript:void(0)" onclick="go('home')">Home</a> › <a href="javascript:void(0)" onclick="go('services')">Services</a> › Web Development</div><h1>Web Development</h1><p>Fast, beautiful, functional websites</p></div></div>
+  <div class="wrap"><div class="sd"><div class="sd-grid">
+    <div class="sd-main"><div class="eyebrow">Web Development</div><br/><div class="tbar"></div><h2>Websites That Work as Hard as You Do</h2><p>We design and develop custom websites that are visually striking, lightning fast, and built to convert. From landing pages to full e-commerce platforms, every project is crafted with precision and purpose.</p><p>Our process starts with understanding your business goals and audience, then building an experience that speaks directly to them — on every device.</p><ul><li>Custom website design &amp; development</li><li>Responsive &amp; mobile-first layouts</li><li>E-commerce &amp; payment integration</li><li>SEO-optimised structure &amp; performance</li><li>CMS integration (WordPress, Wix, Webflow)</li><li>Ongoing maintenance &amp; support</li></ul><button class="btn-p" onclick="go('contact')" style="margin-top:24px">Get a Quote</button></div>
+    <div class="sd-sidebar"><h3>Other Services</h3><div class="sb-item" onclick="go('svc-print')">Print Design</div><div class="sb-item" onclick="go('svc-smm')">Social Media Marketing</div><div class="sb-item" onclick="go('svc-audit')">Website Audit</div><div class="sb-item" onclick="go('svc-branding')">Branding</div><div class="sb-item" onclick="go('svc-funnel')">Funnel Building</div><div class="sb-item" onclick="go('svc-app')">Mobile App</div><br/><button class="btn-p" onclick="go('contact')">Contact Us</button></div>
   </div></div></div>
 </div>
 
 <!-- Print Design -->
-<div id="page-service-print" class="page-view">
-  <div class="inner-hero"><div class="inner-hero-content"><div class="breadcrumb"><span onclick="go('home')">Home</span> &rsaquo; <span onclick="go('services')">Services</span> &rsaquo; Print Design</div><h1>Print Design</h1><p>Tangible brand materials that leave a lasting impression</p></div></div>
-  <div class="wrap"><div class="service-detail"><div class="service-detail-grid">
-    <div><div class="section-eyebrow">Print Design</div><div class="title-bar"></div><h2>Design That Stands Out Offline Too</h2><p>Great branding doesn't stop at the screen. Our print design services create cohesive, high-quality physical materials that strengthen your brand at every touchpoint.</p><p>From business cards to large-format banners, we handle every detail — from initial concept to print-ready files.</p><ul><li>Business cards & stationery</li><li>Brochures, flyers & catalogues</li><li>Banners, posters & signage</li><li>Packaging design</li><li>Brand guidelines & style guides</li><li>Print-ready file preparation</li></ul><button class="btn-primary" onclick="go('contact')" style="margin-top:24px">Get a Quote</button></div>
-    <div class="service-sidebar"><h3>Other Services</h3><div class="sidebar-item" onclick="go('service-web')">Web Development</div><div class="sidebar-item" onclick="go('service-smm')">Social Media Marketing</div><div class="sidebar-item" onclick="go('service-branding')">Branding</div><div class="sidebar-item" onclick="go('service-funnel')">Funnel Building</div><div class="sidebar-cta"><button class="btn-primary" onclick="go('contact')">Contact Us</button></div></div>
+<div id="p-svc-print" class="pv">
+  <div class="ihero"><div class="ihero-c"><div class="bc"><a href="javascript:void(0)" onclick="go('home')">Home</a> › <a href="javascript:void(0)" onclick="go('services')">Services</a> › Print Design</div><h1>Print Design</h1><p>Tangible brand materials that leave a lasting impression</p></div></div>
+  <div class="wrap"><div class="sd"><div class="sd-grid">
+    <div class="sd-main"><div class="eyebrow">Print Design</div><br/><div class="tbar"></div><h2>Design That Stands Out Offline Too</h2><p>Great branding doesn't stop at the screen. Our print design services create cohesive, high-quality physical materials that strengthen your brand at every touchpoint.</p><p>From business cards to large-format banners, we handle every detail — from initial concept to print-ready files.</p><ul><li>Business cards &amp; stationery</li><li>Brochures, flyers &amp; catalogues</li><li>Banners, posters &amp; signage</li><li>Packaging design</li><li>Brand guidelines &amp; style guides</li><li>Print-ready file preparation</li></ul><button class="btn-p" onclick="go('contact')" style="margin-top:24px">Get a Quote</button></div>
+    <div class="sd-sidebar"><h3>Other Services</h3><div class="sb-item" onclick="go('svc-web')">Web Development</div><div class="sb-item" onclick="go('svc-smm')">Social Media Marketing</div><div class="sb-item" onclick="go('svc-branding')">Branding</div><div class="sb-item" onclick="go('svc-funnel')">Funnel Building</div><br/><button class="btn-p" onclick="go('contact')">Contact Us</button></div>
   </div></div></div>
 </div>
 
-<!-- SMM -->
-<div id="page-service-smm" class="page-view">
-  <div class="inner-hero"><div class="inner-hero-content"><div class="breadcrumb"><span onclick="go('home')">Home</span> &rsaquo; <span onclick="go('services')">Services</span> &rsaquo; Social Media Marketing</div><h1>Social Media Marketing</h1><p>Grow your audience and amplify your brand online</p></div></div>
-  <div class="wrap"><div class="service-detail"><div class="service-detail-grid">
-    <div><div class="section-eyebrow">Social Media Marketing</div><div class="title-bar"></div><h2>Content That Connects & Converts</h2><p>Social media is where your brand lives and breathes. We build strategies that grow communities, drive engagement, and turn followers into customers.</p><p>We manage everything from content creation and scheduling to paid campaigns and analytics reporting — so you can focus on running your business.</p><ul><li>Social media strategy & planning</li><li>Content creation (graphics, video, copy)</li><li>Platform management (Instagram, Facebook, LinkedIn)</li><li>Paid ad campaigns & budget management</li><li>Community management & engagement</li><li>Monthly performance reports</li></ul><button class="btn-primary" onclick="go('contact')" style="margin-top:24px">Get a Quote</button></div>
-    <div class="service-sidebar"><h3>Other Services</h3><div class="sidebar-item" onclick="go('service-web')">Web Development</div><div class="sidebar-item" onclick="go('service-print')">Print Design</div><div class="sidebar-item" onclick="go('service-branding')">Branding</div><div class="sidebar-item" onclick="go('personal-branding')">Personal Branding</div><div class="sidebar-cta"><button class="btn-primary" onclick="go('contact')">Contact Us</button></div></div>
+<!-- Social Media Marketing -->
+<div id="p-svc-smm" class="pv">
+  <div class="ihero"><div class="ihero-c"><div class="bc"><a href="javascript:void(0)" onclick="go('home')">Home</a> › <a href="javascript:void(0)" onclick="go('services')">Services</a> › Social Media Marketing</div><h1>Social Media Marketing</h1><p>Grow your audience and amplify your brand online</p></div></div>
+  <div class="wrap"><div class="sd"><div class="sd-grid">
+    <div class="sd-main"><div class="eyebrow">Social Media Marketing</div><br/><div class="tbar"></div><h2>Content That Connects &amp; Converts</h2><p>Social media is where your brand lives and breathes. We build strategies that grow communities, drive engagement, and turn followers into customers.</p><p>We manage everything from content creation and scheduling to paid campaigns and analytics reporting — so you can focus on running your business.</p><ul><li>Social media strategy &amp; planning</li><li>Content creation (graphics, video, copy)</li><li>Platform management (Instagram, Facebook, LinkedIn)</li><li>Paid ad campaigns &amp; budget management</li><li>Community management &amp; engagement</li><li>Monthly performance reports</li></ul><button class="btn-p" onclick="go('contact')" style="margin-top:24px">Get a Quote</button></div>
+    <div class="sd-sidebar"><h3>Other Services</h3><div class="sb-item" onclick="go('svc-web')">Web Development</div><div class="sb-item" onclick="go('svc-print')">Print Design</div><div class="sb-item" onclick="go('svc-branding')">Branding</div><div class="sb-item" onclick="go('personal-branding')">Personal Branding</div><br/><button class="btn-p" onclick="go('contact')">Contact Us</button></div>
   </div></div></div>
 </div>
 
 <!-- Website Audit -->
-<div id="page-service-audit" class="page-view">
-  <div class="inner-hero"><div class="inner-hero-content"><div class="breadcrumb"><span onclick="go('home')">Home</span> &rsaquo; <span onclick="go('services')">Services</span> &rsaquo; Website Audit</div><h1>Website Audit</h1><p>Uncover what's holding your website back</p></div></div>
-  <div class="wrap"><div class="service-detail"><div class="service-detail-grid">
-    <div><div class="section-eyebrow">Website Audit</div><div class="title-bar"></div><h2>Data-Driven Insights for a Better Website</h2><p>A website audit gives you a clear picture of how your site is performing — and exactly what needs to change to improve rankings, conversions, and user experience.</p><p>We deliver a detailed, actionable report covering every aspect of your site, from technical SEO to UX and speed.</p><ul><li>Technical SEO audit</li><li>Page speed & Core Web Vitals analysis</li><li>UX & conversion rate review</li><li>On-page content analysis</li><li>Backlink profile review</li><li>Detailed action plan & recommendations</li></ul><button class="btn-primary" onclick="go('contact')" style="margin-top:24px">Request an Audit</button></div>
-    <div class="service-sidebar"><h3>Other Services</h3><div class="sidebar-item" onclick="go('service-web')">Web Development</div><div class="sidebar-item" onclick="go('service-smm')">Social Media Marketing</div><div class="sidebar-item" onclick="go('service-funnel')">Funnel Building</div><div class="sidebar-cta"><button class="btn-primary" onclick="go('contact')">Contact Us</button></div></div>
+<div id="p-svc-audit" class="pv">
+  <div class="ihero"><div class="ihero-c"><div class="bc"><a href="javascript:void(0)" onclick="go('home')">Home</a> › <a href="javascript:void(0)" onclick="go('services')">Services</a> › Website Audit</div><h1>Website Audit</h1><p>Uncover what's holding your website back</p></div></div>
+  <div class="wrap"><div class="sd"><div class="sd-grid">
+    <div class="sd-main"><div class="eyebrow">Website Audit</div><br/><div class="tbar"></div><h2>Data-Driven Insights for a Better Website</h2><p>A website audit gives you a clear picture of how your site is performing — and exactly what needs to change to improve rankings, conversions, and user experience.</p><p>We deliver a detailed, actionable report covering every aspect of your site, from technical SEO to UX and speed.</p><ul><li>Technical SEO audit</li><li>Page speed &amp; Core Web Vitals analysis</li><li>UX &amp; conversion rate review</li><li>On-page content analysis</li><li>Backlink profile review</li><li>Detailed action plan &amp; recommendations</li></ul><button class="btn-p" onclick="go('contact')" style="margin-top:24px">Request an Audit</button></div>
+    <div class="sd-sidebar"><h3>Other Services</h3><div class="sb-item" onclick="go('svc-web')">Web Development</div><div class="sb-item" onclick="go('svc-smm')">Social Media Marketing</div><div class="sb-item" onclick="go('svc-funnel')">Funnel Building</div><br/><button class="btn-p" onclick="go('contact')">Contact Us</button></div>
   </div></div></div>
 </div>
 
 <!-- Branding -->
-<div id="page-service-branding" class="page-view">
-  <div class="inner-hero"><div class="inner-hero-content"><div class="breadcrumb"><span onclick="go('home')">Home</span> &rsaquo; <span onclick="go('services')">Services</span> &rsaquo; Branding</div><h1>Branding</h1><p>Build a brand identity as unique as your vision</p></div></div>
-  <div class="wrap"><div class="service-detail"><div class="service-detail-grid">
-    <div><div class="section-eyebrow">Branding</div><div class="title-bar"></div><h2>Your Brand, Brought to Life</h2><p>Your brand is more than a logo — it's the feeling people get when they interact with your business. We craft comprehensive brand identities that communicate who you are, what you stand for, and why you're different.</p><ul><li>Brand strategy & positioning</li><li>Logo design & visual identity</li><li>Colour palette & typography</li><li>Brand voice & messaging</li><li>Brand guidelines document</li><li>Collateral design</li></ul><button class="btn-primary" onclick="go('contact')" style="margin-top:24px">Start Your Brand</button></div>
-    <div class="service-sidebar"><h3>Other Services</h3><div class="sidebar-item" onclick="go('personal-branding')">Personal Branding</div><div class="sidebar-item" onclick="go('service-print')">Print Design</div><div class="sidebar-item" onclick="go('service-smm')">Social Media Marketing</div><div class="sidebar-cta"><button class="btn-primary" onclick="go('contact')">Contact Us</button></div></div>
+<div id="p-svc-branding" class="pv">
+  <div class="ihero"><div class="ihero-c"><div class="bc"><a href="javascript:void(0)" onclick="go('home')">Home</a> › <a href="javascript:void(0)" onclick="go('services')">Services</a> › Branding</div><h1>Branding</h1><p>Build a brand identity as unique as your vision</p></div></div>
+  <div class="wrap"><div class="sd"><div class="sd-grid">
+    <div class="sd-main"><div class="eyebrow">Branding</div><br/><div class="tbar"></div><h2>Your Brand, Brought to Life</h2><p>Your brand is more than a logo — it's the feeling people get when they interact with your business. We craft comprehensive brand identities that communicate who you are, what you stand for, and why you're different.</p><ul><li>Brand strategy &amp; positioning</li><li>Logo design &amp; visual identity</li><li>Colour palette &amp; typography</li><li>Brand voice &amp; messaging</li><li>Brand guidelines document</li><li>Collateral design</li></ul><button class="btn-p" onclick="go('contact')" style="margin-top:24px">Start Your Brand</button></div>
+    <div class="sd-sidebar"><h3>Other Services</h3><div class="sb-item" onclick="go('personal-branding')">Personal Branding</div><div class="sb-item" onclick="go('svc-print')">Print Design</div><div class="sb-item" onclick="go('svc-smm')">Social Media Marketing</div><br/><button class="btn-p" onclick="go('contact')">Contact Us</button></div>
   </div></div></div>
 </div>
 
 <!-- Funnel Building -->
-<div id="page-service-funnel" class="page-view">
-  <div class="inner-hero"><div class="inner-hero-content"><div class="breadcrumb"><span onclick="go('home')">Home</span> &rsaquo; <span onclick="go('services')">Services</span> &rsaquo; Funnel Building</div><h1>Funnel Building</h1><p>Turn visitors into paying customers — systematically</p></div></div>
-  <div class="wrap"><div class="service-detail"><div class="service-detail-grid">
-    <div><div class="section-eyebrow">Funnel Building</div><div class="title-bar"></div><h2>Sales Funnels That Actually Convert</h2><p>A well-built funnel is your 24/7 salesperson. We design and build high-converting sales funnels that guide your prospects through every stage of the buyer journey — from awareness to purchase.</p><ul><li>Funnel strategy & mapping</li><li>Landing page design & development</li><li>Lead magnet creation</li><li>Email sequence setup</li><li>Payment & checkout integration</li><li>A/B testing & optimisation</li></ul><button class="btn-primary" onclick="go('contact')" style="margin-top:24px">Build My Funnel</button></div>
-    <div class="service-sidebar"><h3>Other Services</h3><div class="sidebar-item" onclick="go('service-web')">Web Development</div><div class="sidebar-item" onclick="go('service-smm')">Social Media Marketing</div><div class="sidebar-item" onclick="go('service-audit')">Website Audit</div><div class="sidebar-cta"><button class="btn-primary" onclick="go('contact')">Contact Us</button></div></div>
+<div id="p-svc-funnel" class="pv">
+  <div class="ihero"><div class="ihero-c"><div class="bc"><a href="javascript:void(0)" onclick="go('home')">Home</a> › <a href="javascript:void(0)" onclick="go('services')">Services</a> › Funnel Building</div><h1>Funnel Building</h1><p>Turn visitors into paying customers — systematically</p></div></div>
+  <div class="wrap"><div class="sd"><div class="sd-grid">
+    <div class="sd-main"><div class="eyebrow">Funnel Building</div><br/><div class="tbar"></div><h2>Sales Funnels That Actually Convert</h2><p>A well-built funnel is your 24/7 salesperson. We design and build high-converting sales funnels that guide your prospects through every stage of the buyer journey — from awareness to purchase.</p><ul><li>Funnel strategy &amp; mapping</li><li>Landing page design &amp; development</li><li>Lead magnet creation</li><li>Email sequence setup</li><li>Payment &amp; checkout integration</li><li>A/B testing &amp; optimisation</li></ul><button class="btn-p" onclick="go('contact')" style="margin-top:24px">Build My Funnel</button></div>
+    <div class="sd-sidebar"><h3>Other Services</h3><div class="sb-item" onclick="go('svc-web')">Web Development</div><div class="sb-item" onclick="go('svc-smm')">Social Media Marketing</div><div class="sb-item" onclick="go('svc-audit')">Website Audit</div><br/><button class="btn-p" onclick="go('contact')">Contact Us</button></div>
   </div></div></div>
 </div>
 
 <!-- Business Listing -->
-<div id="page-service-bizlisting" class="page-view">
-  <div class="inner-hero"><div class="inner-hero-content"><div class="breadcrumb"><span onclick="go('home')">Home</span> &rsaquo; <span onclick="go('services')">Services</span> &rsaquo; Business Listing</div><h1>Business Listing</h1><p>Get found where your customers are searching</p></div></div>
-  <div class="wrap"><div class="service-detail"><div class="service-detail-grid">
-    <div><div class="section-eyebrow">Business Listing</div><div class="title-bar"></div><h2>Dominate Local Search Results</h2><p>We set up and optimise your business listings across all major platforms so customers can find, trust, and contact you easily — whether they're on Google, Maps, or any directory.</p><ul><li>Google Business Profile setup & optimisation</li><li>Listing on 50+ directories</li><li>NAP consistency audit</li><li>Review management strategy</li><li>Local SEO optimisation</li><li>Ongoing listing maintenance</li></ul><button class="btn-primary" onclick="go('contact')" style="margin-top:24px">Get Listed</button></div>
-    <div class="service-sidebar"><h3>Other Services</h3><div class="sidebar-item" onclick="go('service-amazon')">Amazon Listing</div><div class="sidebar-item" onclick="go('service-smm')">Social Media Marketing</div><div class="sidebar-item" onclick="go('service-audit')">Website Audit</div><div class="sidebar-cta"><button class="btn-primary" onclick="go('contact')">Contact Us</button></div></div>
+<div id="p-svc-bizlist" class="pv">
+  <div class="ihero"><div class="ihero-c"><div class="bc"><a href="javascript:void(0)" onclick="go('home')">Home</a> › <a href="javascript:void(0)" onclick="go('services')">Services</a> › Business Listing</div><h1>Business Listing</h1><p>Get found where your customers are searching</p></div></div>
+  <div class="wrap"><div class="sd"><div class="sd-grid">
+    <div class="sd-main"><div class="eyebrow">Business Listing</div><br/><div class="tbar"></div><h2>Dominate Local Search Results</h2><p>We set up and optimise your business listings across all major platforms so customers can find, trust, and contact you easily — whether they're on Google, Maps, or any directory.</p><ul><li>Google Business Profile setup &amp; optimisation</li><li>Listing on 50+ directories</li><li>NAP consistency audit</li><li>Review management strategy</li><li>Local SEO optimisation</li><li>Ongoing listing maintenance</li></ul><button class="btn-p" onclick="go('contact')" style="margin-top:24px">Get Listed</button></div>
+    <div class="sd-sidebar"><h3>Other Services</h3><div class="sb-item" onclick="go('svc-amazon')">Amazon Listing</div><div class="sb-item" onclick="go('svc-smm')">Social Media Marketing</div><div class="sb-item" onclick="go('svc-audit')">Website Audit</div><br/><button class="btn-p" onclick="go('contact')">Contact Us</button></div>
   </div></div></div>
 </div>
 
 <!-- Amazon Listing -->
-<div id="page-service-amazon" class="page-view">
-  <div class="inner-hero"><div class="inner-hero-content"><div class="breadcrumb"><span onclick="go('home')">Home</span> &rsaquo; <span onclick="go('services')">Services</span> &rsaquo; Amazon Listing</div><h1>Amazon Listing</h1><p>Optimised listings that rank higher and sell more</p></div></div>
-  <div class="wrap"><div class="service-detail"><div class="service-detail-grid">
-    <div><div class="section-eyebrow">Amazon Listing</div><div class="title-bar"></div><h2>Sell More on Amazon</h2><p>With millions of products competing for attention, your Amazon listing needs to stand out. We craft keyword-rich, conversion-optimised listings that rank higher and drive sales.</p><ul><li>Keyword research & strategy</li><li>Optimised product titles & descriptions</li><li>Bullet point copywriting</li><li>A+ content / Enhanced Brand Content</li><li>Product image guidelines</li><li>Backend search term optimisation</li></ul><button class="btn-primary" onclick="go('contact')" style="margin-top:24px">Optimise My Listing</button></div>
-    <div class="service-sidebar"><h3>Other Services</h3><div class="sidebar-item" onclick="go('service-bizlisting')">Business Listing</div><div class="sidebar-item" onclick="go('service-smm')">Social Media Marketing</div><div class="sidebar-item" onclick="go('service-branding')">Branding</div><div class="sidebar-cta"><button class="btn-primary" onclick="go('contact')">Contact Us</button></div></div>
+<div id="p-svc-amazon" class="pv">
+  <div class="ihero"><div class="ihero-c"><div class="bc"><a href="javascript:void(0)" onclick="go('home')">Home</a> › <a href="javascript:void(0)" onclick="go('services')">Services</a> › Amazon Listing</div><h1>Amazon Listing</h1><p>Optimised listings that rank higher and sell more</p></div></div>
+  <div class="wrap"><div class="sd"><div class="sd-grid">
+    <div class="sd-main"><div class="eyebrow">Amazon Listing</div><br/><div class="tbar"></div><h2>Sell More on Amazon</h2><p>With millions of products competing for attention, your Amazon listing needs to stand out. We craft keyword-rich, conversion-optimised listings that rank higher and drive sales.</p><ul><li>Keyword research &amp; strategy</li><li>Optimised product titles &amp; descriptions</li><li>Bullet point copywriting</li><li>A+ content / Enhanced Brand Content</li><li>Product image guidelines</li><li>Backend search term optimisation</li></ul><button class="btn-p" onclick="go('contact')" style="margin-top:24px">Optimise My Listing</button></div>
+    <div class="sd-sidebar"><h3>Other Services</h3><div class="sb-item" onclick="go('svc-bizlist')">Business Listing</div><div class="sb-item" onclick="go('svc-smm')">Social Media Marketing</div><div class="sb-item" onclick="go('svc-branding')">Branding</div><br/><button class="btn-p" onclick="go('contact')">Contact Us</button></div>
   </div></div></div>
 </div>
 
 <!-- Mobile App -->
-<div id="page-service-app" class="page-view">
-  <div class="inner-hero"><div class="inner-hero-content"><div class="breadcrumb"><span onclick="go('home')">Home</span> &rsaquo; <span onclick="go('services')">Services</span> &rsaquo; Mobile App</div><h1>Mobile App</h1><p>Intuitive apps that your users will love</p></div></div>
-  <div class="wrap"><div class="service-detail"><div class="service-detail-grid">
-    <div><div class="section-eyebrow">Mobile App</div><div class="title-bar"></div><h2>Apps Built for Real People</h2><p>We design and develop mobile applications that are intuitive, performant, and beautifully crafted. From concept to App Store — we handle the full journey.</p><ul><li>iOS & Android app development</li><li>UI/UX design & prototyping</li><li>API & backend integration</li><li>Push notifications & in-app messaging</li><li>App Store & Play Store submission</li><li>Post-launch support & updates</li></ul><button class="btn-primary" onclick="go('contact')" style="margin-top:24px">Build My App</button></div>
-    <div class="service-sidebar"><h3>Other Services</h3><div class="sidebar-item" onclick="go('service-web')">Web Development</div><div class="sidebar-item" onclick="go('service-branding')">Branding</div><div class="sidebar-item" onclick="go('service-funnel')">Funnel Building</div><div class="sidebar-cta"><button class="btn-primary" onclick="go('contact')">Contact Us</button></div></div>
+<div id="p-svc-app" class="pv">
+  <div class="ihero"><div class="ihero-c"><div class="bc"><a href="javascript:void(0)" onclick="go('home')">Home</a> › <a href="javascript:void(0)" onclick="go('services')">Services</a> › Mobile App</div><h1>Mobile App</h1><p>Intuitive apps that your users will love</p></div></div>
+  <div class="wrap"><div class="sd"><div class="sd-grid">
+    <div class="sd-main"><div class="eyebrow">Mobile App</div><br/><div class="tbar"></div><h2>Apps Built for Real People</h2><p>We design and develop mobile applications that are intuitive, performant, and beautifully crafted. From concept to App Store — we handle the full journey.</p><ul><li>iOS &amp; Android app development</li><li>UI/UX design &amp; prototyping</li><li>API &amp; backend integration</li><li>Push notifications &amp; in-app messaging</li><li>App Store &amp; Play Store submission</li><li>Post-launch support &amp; updates</li></ul><button class="btn-p" onclick="go('contact')" style="margin-top:24px">Build My App</button></div>
+    <div class="sd-sidebar"><h3>Other Services</h3><div class="sb-item" onclick="go('svc-web')">Web Development</div><div class="sb-item" onclick="go('svc-branding')">Branding</div><div class="sb-item" onclick="go('svc-funnel')">Funnel Building</div><br/><button class="btn-p" onclick="go('contact')">Contact Us</button></div>
   </div></div></div>
 </div>
 
-
-<!-- ══════════════════ PERSONAL BRANDING PAGE ══════════════════ -->
-<div id="page-personal-branding" class="page-view">
-  <div class="inner-hero"><div class="inner-hero-content"><div class="breadcrumb"><span onclick="go('home')">Home</span> &rsaquo; <span onclick="go('services')">Services</span> &rsaquo; Personal Branding</div><h1>Personal Branding</h1><p>Position yourself as the authority in your field</p></div></div>
+<!-- ═══════════ PERSONAL BRANDING ═══════════ -->
+<div id="p-personal-branding" class="pv">
+  <div class="ihero"><div class="ihero-c"><div class="bc"><a href="javascript:void(0)" onclick="go('home')">Home</a> › <a href="javascript:void(0)" onclick="go('services')">Services</a> › Personal Branding</div><h1>Personal Branding</h1><p>Position yourself as the authority in your field</p></div></div>
   <div class="wrap" style="padding-top:64px;padding-bottom:80px">
-    <div class="branding-hero-box">
+    <div class="pb-hero">
       <div><h2>Your Name Is Your Brand</h2><p>In today's world, your personal brand is your most powerful asset. Whether you're a consultant, entrepreneur, creator, or executive — we help you build a presence that commands attention, builds trust, and opens doors.</p></div>
-      <div class="price-tag"><span class="amount">Custom</span><span class="period">Pricing</span></div>
+      <div class="price-tag"><span class="amt">Custom</span><span class="per">Pricing</span></div>
     </div>
-    <div style="text-align:center;margin-bottom:36px"><div class="section-eyebrow">Packages</div><div class="title-bar"></div><h2 class="section-title">Choose Your Plan</h2></div>
-    <div class="branding-packages">
-      <div class="pkg-card">
-        <div class="pkg-title">Starter</div>
-        <div class="pkg-price">₹9,999</div>
-        <ul class="pkg-features"><li>LinkedIn profile overhaul</li><li>Bio & positioning statement</li><li>5 social media templates</li><li>Brand colour & font guide</li></ul>
-        <button class="btn-primary" onclick="go('contact')">Get Started</button>
-      </div>
-      <div class="pkg-card featured">
-        <div class="pkg-title">⭐ Growth</div>
-        <div class="pkg-price">₹24,999</div>
-        <ul class="pkg-features"><li>Everything in Starter</li><li>Custom logo & visual identity</li><li>1-page personal website</li><li>Content strategy (30 days)</li><li>12 branded social posts</li></ul>
-        <button class="btn-primary" onclick="go('contact')">Get Started</button>
-      </div>
-      <div class="pkg-card">
-        <div class="pkg-title">Authority</div>
-        <div class="pkg-price">₹49,999</div>
-        <ul class="pkg-features"><li>Everything in Growth</li><li>Multi-page personal website</li><li>3-month content calendar</li><li>PR & media kit</li><li>Monthly strategy calls</li></ul>
-        <button class="btn-primary" onclick="go('contact')">Get Started</button>
-      </div>
+    <div style="text-align:center;margin-bottom:36px"><div class="eyebrow">Packages</div><br/><div class="tbar"></div><h2 class="sec-title">Choose Your Plan</h2></div>
+    <div class="pkg-grid">
+      <div class="pkg"><div class="pkg-t">Starter</div><div class="pkg-p">₹9,999</div><ul class="pkg-f"><li>LinkedIn profile overhaul</li><li>Bio &amp; positioning statement</li><li>5 social media templates</li><li>Brand colour &amp; font guide</li></ul><button class="btn-p" onclick="go('contact')">Get Started</button></div>
+      <div class="pkg feat"><div class="pkg-t">⭐ Growth</div><div class="pkg-p">₹24,999</div><ul class="pkg-f"><li>Everything in Starter</li><li>Custom logo &amp; visual identity</li><li>1-page personal website</li><li>Content strategy (30 days)</li><li>12 branded social posts</li></ul><button class="btn-p" onclick="go('contact')">Get Started</button></div>
+      <div class="pkg"><div class="pkg-t">Authority</div><div class="pkg-p">₹49,999</div><ul class="pkg-f"><li>Everything in Growth</li><li>Multi-page personal website</li><li>3-month content calendar</li><li>PR &amp; media kit</li><li>Monthly strategy calls</li></ul><button class="btn-p" onclick="go('contact')">Get Started</button></div>
     </div>
   </div>
-</div><!-- /personal-branding -->
+</div>
 
-
-<!-- ══════════════════ PROJECTS PAGE ══════════════════ -->
-<div id="page-projects" class="page-view">
-  <div class="inner-hero"><div class="inner-hero-content"><div class="breadcrumb"><span onclick="go('home')">Home</span> &rsaquo; Projects</div><h1>Projects</h1><p>A glimpse at the work we're proud of</p></div></div>
+<!-- ═══════════ PROJECTS ═══════════ -->
+<div id="p-projects" class="pv">
+  <div class="ihero"><div class="ihero-c"><div class="bc"><a href="javascript:void(0)" onclick="go('home')">Home</a> › Projects</div><h1>Projects</h1><p>A glimpse at work we're proud of</p></div></div>
   <div class="wrap">
-    <div class="projects-list">
-      <div class="project-row"><div class="project-num">01</div><div><h4>E-Commerce Brand Launch</h4><p>Full brand identity, website, and social media launch for a D2C fashion startup. Achieved 10,000+ website visits in the first month.</p></div><span class="project-status status-live">Live</span></div>
-      <div class="project-row"><div class="project-num">02</div><div><h4>Local Business Digital Transformation</h4><p>Took a traditional brick-and-mortar business online with a new website, Google Business listing, and social media presence.</p></div><span class="project-status status-done">Completed</span></div>
-      <div class="project-row"><div class="project-num">03</div><div><h4>Amazon Seller Optimisation</h4><p>Revamped 40+ product listings with keyword-optimised copy and A+ content, resulting in a 35% increase in organic sales.</p></div><span class="project-status status-done">Completed</span></div>
-      <div class="project-row"><div class="project-num">04</div><div><h4>Personal Brand for Industry Consultant</h4><p>Built a complete personal brand including LinkedIn strategy, website, and content plan — growing their following by 5,000+ in 90 days.</p></div><span class="project-status status-live">Live</span></div>
-      <div class="project-row"><div class="project-num">05</div><div><h4>Sales Funnel for Online Coach</h4><p>Designed and launched a 4-step sales funnel with email automation, driving a 22% conversion rate on cold traffic.</p></div><span class="project-status status-done">Completed</span></div>
-      <div class="project-row"><div class="project-num">06</div><div><h4>Mobile App — Service Booking Platform</h4><p>Designed and developed a cross-platform mobile app for a home services company, available on iOS and Android.</p></div><span class="project-status status-live">Live</span></div>
+    <div class="proj-list">
+      <div class="proj-row"><div class="proj-num">01</div><div><h4>E-Commerce Brand Launch</h4><p>Full brand identity, website, and social media launch for a D2C fashion startup. Achieved 10,000+ website visits in the first month.</p></div><span class="badge live">Live</span></div>
+      <div class="proj-row"><div class="proj-num">02</div><div><h4>Local Business Digital Transformation</h4><p>Took a traditional brick-and-mortar business online with a new website, Google Business listing, and social media presence.</p></div><span class="badge done">Completed</span></div>
+      <div class="proj-row"><div class="proj-num">03</div><div><h4>Amazon Seller Optimisation</h4><p>Revamped 40+ product listings with keyword-optimised copy and A+ content, resulting in a 35% increase in organic sales.</p></div><span class="badge done">Completed</span></div>
+      <div class="proj-row"><div class="proj-num">04</div><div><h4>Personal Brand for Industry Consultant</h4><p>Built a complete personal brand including LinkedIn strategy, website, and content plan — growing their following by 5,000+ in 90 days.</p></div><span class="badge live">Live</span></div>
+      <div class="proj-row"><div class="proj-num">05</div><div><h4>Sales Funnel for Online Coach</h4><p>Designed and launched a 4-step sales funnel with email automation, driving a 22% conversion rate on cold traffic.</p></div><span class="badge done">Completed</span></div>
+      <div class="proj-row"><div class="proj-num">06</div><div><h4>Mobile App — Service Booking Platform</h4><p>Designed and developed a cross-platform mobile app for a home services company, available on iOS and Android.</p></div><span class="badge live">Live</span></div>
     </div>
   </div>
-</div><!-- /projects -->
+</div>
 
-
-<!-- ══════════════════ PORTFOLIO PAGE ══════════════════ -->
-<div id="page-portfolio" class="page-view">
-  <div class="inner-hero"><div class="inner-hero-content"><div class="breadcrumb"><span onclick="go('home')">Home</span> &rsaquo; Portfolio</div><h1>Portfolio</h1><p>Selected works from our creative team</p></div></div>
+<!-- ═══════════ PORTFOLIO ═══════════ -->
+<div id="p-portfolio" class="pv">
+  <div class="ihero"><div class="ihero-c"><div class="bc"><a href="javascript:void(0)" onclick="go('home')">Home</a> › Portfolio</div><h1>Portfolio</h1><p>Selected works from our creative team</p></div></div>
   <div class="wrap">
-    <div class="portfolio-grid">
-      <div class="port-card"><div class="port-thumb">🛍️</div><div class="port-info"><h4>Fashion Brand Identity</h4><p>Complete visual identity for a D2C fashion startup — logo, palette, typography & guidelines.</p><span class="port-tag">Branding</span></div></div>
+    <div class="port-grid">
+      <div class="port-card"><div class="port-thumb">🛍️</div><div class="port-info"><h4>Fashion Brand Identity</h4><p>Complete visual identity for a D2C fashion startup — logo, palette, typography &amp; guidelines.</p><span class="port-tag">Branding</span></div></div>
       <div class="port-card"><div class="port-thumb">🌐</div><div class="port-info"><h4>Corporate Website</h4><p>Multi-page responsive website with CMS integration and SEO-optimised structure.</p><span class="port-tag">Web Dev</span></div></div>
-      <div class="port-card"><div class="port-thumb">📱</div><div class="port-info"><h4>Social Media Campaign</h4><p>30-day content campaign across Instagram & LinkedIn — 200% reach increase.</p><span class="port-tag">Social Media</span></div></div>
-      <div class="port-card"><div class="port-thumb">📦</div><div class="port-info"><h4>Amazon Store Redesign</h4><p>A+ content, listing copy and storefront redesign for a health & wellness brand.</p><span class="port-tag">Amazon</span></div></div>
-      <div class="port-card"><div class="port-thumb">🎯</div><div class="port-info"><h4>Personal Brand — Coach</h4><p>LinkedIn overhaul, personal website & content calendar for an executive coach.</p><span class="port-tag">Personal Branding</span></div></div>
+      <div class="port-card"><div class="port-thumb">📱</div><div class="port-info"><h4>Social Media Campaign</h4><p>30-day content campaign across Instagram &amp; LinkedIn — 200% reach increase.</p><span class="port-tag">Social Media</span></div></div>
+      <div class="port-card"><div class="port-thumb">📦</div><div class="port-info"><h4>Amazon Store Redesign</h4><p>A+ content, listing copy and storefront redesign for a health &amp; wellness brand.</p><span class="port-tag">Amazon</span></div></div>
+      <div class="port-card"><div class="port-thumb">🎯</div><div class="port-info"><h4>Personal Brand — Coach</h4><p>LinkedIn overhaul, personal website &amp; content calendar for an executive coach.</p><span class="port-tag">Personal Branding</span></div></div>
       <div class="port-card"><div class="port-thumb">🚀</div><div class="port-info"><h4>Sales Funnel — Online Course</h4><p>4-step funnel with email automation and Razorpay payment integration.</p><span class="port-tag">Funnel Building</span></div></div>
-      <div class="port-card"><div class="port-thumb">📲</div><div class="port-info"><h4>Service Booking App</h4><p>Cross-platform mobile app (iOS & Android) for a home services company.</p><span class="port-tag">Mobile App</span></div></div>
-      <div class="port-card"><div class="port-thumb">🖨️</div><div class="port-info"><h4>Product Packaging & Print</h4><p>Packaging design and print collateral for an FMCG brand refresh.</p><span class="port-tag">Print Design</span></div></div>
-      <div class="port-card"><div class="port-thumb">📍</div><div class="port-info"><h4>Local SEO & Listings</h4><p>Google Business optimisation and 60+ directory listings for a restaurant chain.</p><span class="port-tag">Business Listing</span></div></div>
+      <div class="port-card"><div class="port-thumb">📲</div><div class="port-info"><h4>Service Booking App</h4><p>Cross-platform mobile app (iOS &amp; Android) for a home services company.</p><span class="port-tag">Mobile App</span></div></div>
+      <div class="port-card"><div class="port-thumb">🖨️</div><div class="port-info"><h4>Product Packaging &amp; Print</h4><p>Packaging design and print collateral for an FMCG brand refresh.</p><span class="port-tag">Print Design</span></div></div>
+      <div class="port-card"><div class="port-thumb">📍</div><div class="port-info"><h4>Local SEO &amp; Listings</h4><p>Google Business optimisation and 60+ directory listings for a restaurant chain.</p><span class="port-tag">Business Listing</span></div></div>
     </div>
   </div>
-</div><!-- /portfolio -->
+</div>
 
-
-<!-- ══════════════════ PRIVACY POLICY ══════════════════ -->
-<div id="page-privacy" class="page-view">
-  <div class="inner-hero"><div class="inner-hero-content"><div class="breadcrumb"><span onclick="go('home')">Home</span> &rsaquo; Privacy Policy</div><h1>Privacy Policy</h1></div></div>
-  <div class="policy-content">
+<!-- ═══════════ PRIVACY ═══════════ -->
+<div id="p-privacy" class="pv">
+  <div class="ihero"><div class="ihero-c"><div class="bc"><a href="javascript:void(0)" onclick="go('home')">Home</a> › Privacy Policy</div><h1>Privacy Policy</h1></div></div>
+  <div class="pol">
     <h2>Privacy Policy</h2>
-    <p>Last updated: 2022. This Privacy Policy describes how Reality Reach Ventures ("we", "us", or "our") collects, uses, and shares information about you when you use our website and services.</p>
+    <p>Last updated: 2022. This Privacy Policy describes how Reality Reach Ventures collects, uses, and shares information about you when you use our website and services.</p>
     <h3>Information We Collect</h3>
     <p>We collect information you provide directly to us, such as when you fill out a contact form, request a quote, or make a payment. This may include your name, email address, phone number, and business details.</p>
     <h3>How We Use Your Information</h3>
     <ul><li>To provide and improve our services</li><li>To communicate with you about projects and inquiries</li><li>To send service-related notifications</li><li>To process payments securely</li></ul>
     <h3>Data Sharing</h3>
-    <p>We do not sell, trade, or rent your personal information to third parties. We may share information with trusted service providers who assist us in operating our website and conducting our business, provided those parties agree to keep this information confidential.</p>
+    <p>We do not sell, trade, or rent your personal information to third parties. We may share information with trusted service providers who assist us in operating our website and conducting our business.</p>
     <h3>Contact</h3>
-    <p>If you have any questions about this Privacy Policy, please <span style="color:var(--blue);cursor:pointer" onclick="go('contact')">contact us</span>.</p>
+    <p>If you have any questions, please <a href="javascript:void(0)" onclick="go('contact')" style="color:var(--blue)">contact us</a>.</p>
   </div>
 </div>
 
-<!-- ══════════════════ REFUND POLICY ══════════════════ -->
-<div id="page-refund" class="page-view">
-  <div class="inner-hero"><div class="inner-hero-content"><div class="breadcrumb"><span onclick="go('home')">Home</span> &rsaquo; Refund Policy</div><h1>Refund Policy</h1></div></div>
-  <div class="policy-content">
+<!-- ═══════════ REFUND ═══════════ -->
+<div id="p-refund" class="pv">
+  <div class="ihero"><div class="ihero-c"><div class="bc"><a href="javascript:void(0)" onclick="go('home')">Home</a> › Refund Policy</div><h1>Refund Policy</h1></div></div>
+  <div class="pol">
     <h2>Refund Policy</h2>
     <p>Last updated: 2022. At Reality Reach Ventures, we are committed to delivering high-quality creative services. Please read our refund policy carefully before engaging our services.</p>
     <h3>General Policy</h3>
@@ -779,14 +629,14 @@
     <h3>Non-Refundable Items</h3>
     <ul><li>Consultation fees</li><li>Work already delivered or in progress</li><li>Third-party costs (tools, software, ad spend)</li></ul>
     <h3>Process</h3>
-    <p>To request a refund, please <span style="color:var(--blue);cursor:pointer" onclick="go('contact')">contact us</span> within 7 days of payment with your order details and reason for the request.</p>
+    <p>To request a refund, please <a href="javascript:void(0)" onclick="go('contact')" style="color:var(--blue)">contact us</a> within 7 days of payment.</p>
   </div>
 </div>
 
-<!-- ══════════════════ TERMS & CONDITIONS ══════════════════ -->
-<div id="page-terms" class="page-view">
-  <div class="inner-hero"><div class="inner-hero-content"><div class="breadcrumb"><span onclick="go('home')">Home</span> &rsaquo; Terms and Conditions</div><h1>Terms and Conditions</h1></div></div>
-  <div class="policy-content">
+<!-- ═══════════ TERMS ═══════════ -->
+<div id="p-terms" class="pv">
+  <div class="ihero"><div class="ihero-c"><div class="bc"><a href="javascript:void(0)" onclick="go('home')">Home</a> › Terms and Conditions</div><h1>Terms and Conditions</h1></div></div>
+  <div class="pol">
     <h2>Terms and Conditions</h2>
     <p>Last updated: 2022. By engaging Reality Reach Ventures for any service, you agree to the following terms and conditions.</p>
     <h3>Services</h3>
@@ -800,61 +650,25 @@
     <h3>Limitation of Liability</h3>
     <p>Reality Reach Ventures shall not be liable for any indirect, incidental, or consequential damages arising from the use of our services.</p>
     <h3>Governing Law</h3>
-    <p>These terms are governed by the laws of India. Any disputes shall be resolved through mutual negotiation or, if necessary, through the courts of India.</p>
-    <p>For questions, please <span style="color:var(--blue);cursor:pointer" onclick="go('contact')">contact us</span>.</p>
+    <p>These terms are governed by the laws of India. For questions, please <a href="javascript:void(0)" onclick="go('contact')" style="color:var(--blue)">contact us</a>.</p>
   </div>
 </div>
 
-
-<!-- ══════════════════ SHARED FOOTER (always visible) ══════════════════ -->
-<footer id="site-footer">
-  <div class="footer-inner">
-    <div class="footer-top">
-      <div class="footer-brand-name">Reality <span>Reach</span> Ventures</div>
-      <div class="footer-links">
-        <a onclick="go('privacy')">Privacy Policy</a>
-        <a onclick="go('refund')">Refund Policy</a>
-        <a onclick="go('terms')">Terms and Conditions</a>
-        <a onclick="go('contact')">Contact Us</a>
+<!-- ═══════════ FOOTER ═══════════ -->
+<footer>
+  <div class="ft-in">
+    <div class="ft-top">
+      <div class="ft-brand">Reality <span>Reach</span> Ventures</div>
+      <div class="ft-links">
+        <a href="javascript:void(0)" onclick="go('privacy')">Privacy Policy</a>
+        <a href="javascript:void(0)" onclick="go('refund')">Refund Policy</a>
+        <a href="javascript:void(0)" onclick="go('terms')">Terms and Conditions</a>
+        <a href="javascript:void(0)" onclick="go('contact')">Contact Us</a>
       </div>
     </div>
-    <div class="footer-bottom">©2022 by realityreach. Proudly created with <a onclick="go('home')">REALITY REACH VENTURES</a></div>
+    <div class="ft-bot">©2022 by realityreach. Proudly created with <a href="javascript:void(0)" onclick="go('home')">REALITY REACH VENTURES</a></div>
   </div>
 </footer>
 
-<script>
-  // ── ROUTER ──
-  const pages = document.querySelectorAll('.page-view');
-  const navIds = ['home','about','contact','services','projects','portfolio'];
-
-  function go(pageKey) {
-    pages.forEach(p => p.classList.remove('active'));
-    const target = document.getElementById('page-' + pageKey);
-    if (target) {
-      target.classList.add('active');
-    } else {
-      document.getElementById('page-home').classList.add('active');
-    }
-    // update active nav link
-    navIds.forEach(id => {
-      const el = document.getElementById('nav-' + id);
-      if (el) el.classList.remove('active-link');
-    });
-    const activeNav = document.getElementById('nav-' + pageKey);
-    if (activeNav) activeNav.classList.add('active-link');
-
-    window.scrollTo({top: 0, behavior: 'smooth'});
-    closeMobileMenu();
-  }
-
-  // ── FORM SUBMIT ──
-  function submitForm(e, id) {
-    e.preventDefault();
-    const el = document.getElementById(id + '-success');
-    if (el) { el.style.display = 'block'; e.target.reset(); }
-  }
-
-  // ── MOBILE MENU ──
-  let mobileOpen = false;
-  function toggleMobileMenu() {
-    mobileOpe
+</body>
+</html>
